@@ -14,3 +14,5 @@ export const CONTRIBUTIONS_PAGE = "/carnet/contributions"; // it's where you see
 export const CREATE_RECIPE_PAGE = "/recipe/create";
 export const EDIT_RECIPE_PAGE = "/recipe/edit"; // edit and delete the recipe
 export const RATINGS_COMMENT_PAGE = "/recipe/comment";
+
+export const PROTECTEDPAGE = "/protected";

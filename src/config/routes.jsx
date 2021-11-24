@@ -9,16 +9,16 @@ const routes = (props) => {
   const { user } = props;
   return [
     {
-      path: PATHS.HOMEPAGE,
+      path: PATHS.HOME_PAGE,
       element: <HomePage {...props} />,
     },
     {
-      path: PATHS.SIGNUPPAGE,
+      path: PATHS.SIGNUP_PAGE,
       element: <Signup {...props} />,
     },
 
     {
-      path: PATHS.LOGINPAGE,
+      path: PATHS.LOGIN_PAGE,
       element: <Login {...props} />,
     },
     {
@@ -26,7 +26,7 @@ const routes = (props) => {
       element: user ? (
         <ProtectedPage {...props} />
       ) : (
-        <Navigate to={PATHS.LOGINPAGE} replace />
+        <Navigate to={PATHS.LOGIN_PAGE} replace />
       ),
     },
   ];

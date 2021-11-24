@@ -9,7 +9,7 @@ import * as CONSTS from "../../utils/consts";
 const Navbar = (props) => {
 	return (
 		<nav>
-			<Link to={PATHS.HOMEPAGE} className="nav__projectName">
+			<Link to={PATHS.HOME_PAGE} className="nav__projectName">
 				{CONSTS.CAPITALIZED_APP}
 			</Link>
 
@@ -25,10 +25,10 @@ const Navbar = (props) => {
 					</>
 				) : (
 					<>
-						<Link to={PATHS.SIGNUPPAGE} className="authLink">
+						<Link to={PATHS.SIGNUP_PAGE} className="authLink">
 							Signup
 						</Link>
-						<Link to={PATHS.LOGINPAGE} className="authLink">
+						<Link to={PATHS.LOGIN_PAGE} className="authLink">
 							Log In
 						</Link>
 					</>
