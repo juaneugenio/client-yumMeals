@@ -1,6 +1,6 @@
 const recipes = [
   {
-    id: 001,
+    id: "ris",
     title: "Risotto",
     cuisine: "Italian",
     timeToPrepare: 60,
@@ -13,19 +13,19 @@ const recipes = [
       "https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fbeta.ctvnews.ca%2Fcontent%2Fdam%2Fctvnews%2Fimages%2F2019%2F11%2F18%2F1_4691731.png%3Fcache_timestamp%3D1574134871525&sp=1636049065T284b1a325bbeb0c2d0ecce8350c81787be51afb65220e512e19c61ef42b6e5e5",
   },
   {
-    id: 002,
+    id: "002",
     title: "Paella",
     cuisine: "Spanish",
     timeToPrepare: 60,
     category: "Main Dishes",
     cookingTime: 20,
     level: "Amateur Chef",
-    ingredients: ["Take the rice", "water boil", "blabla"],
+    ingredients: ["Take the rice", "water boil", "don't forget safran"],
     ratings: 4,
     image: "https://i.ytimg.com/vi/WCcpSyVWMwU/maxresdefault.jpg",
   },
   {
-    id: 003,
+    id: "003",
     title: "Fish&Chips",
     cuisine: "British",
     timeToPrepare: 60,
@@ -40,5 +40,15 @@ const recipes = [
 ];
 
 export function getRecipes() {
-  return recipes;
+  return Promise.resolve(recipes);
+}
+
+export function getSingleRecipe(recipeId) {
+  const singleRecipe = recipes.find((element) => element.id === recipeId);
+
+  if (!singleRecipe) {
+    return Promise.reject("This recipe doesn't exist!");
+  }
+
+  return Promise.resolve(singleRecipe);
 }
