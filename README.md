@@ -1,3 +1,64 @@
+# YUMMEALS FEATURES
+
+Frontend:
+
+HomePage /
+AboutPage /about
+LogIn /login
+Signup /signup
+Search result page
+Profile Page (public) /:user
+Profile Settings (private) /account
+Carnet Page (logged in) /carnet
+Recipe Page (individual, public) /recipe/:recipeId
+
+Backend:
+/auth/login POST
+/auth/signup POST
+/auth/logout DELETE
+/auth/delete-account
+/profile/:userId GET
+/profile/:userId/edit PUT
+/auth/me GET (get loggedin user data)
+/feed GET
+/post/:postId GET
+/post/add POST
+/post/edit POST
+/post/delete DELETE
+/post/like PUT
+/user/follow PUT
+
+IF WE HAVE TIME:
+FOLLOW USERS
+
+MODELS
+
+# User
+
+email : string and unique
+username/nickName: string
+password: string
+userPic: string
+following: User[]
+
+# RECIPE
+
+title: string
+cuisine : [] : asian, indian, tex-mex, french, ...
+category : string
+time-to-prepare : number
+cookingTime : number
+level : string => values (Amateur Chef,Chef, Ultra Pro Chef)
+price : string => values(cheap,..., expensive)
+pictures : []
+ingredients : ["100g of rice", "10 cl of cream", ...]
+ratings : []
+ratingsUser: User[]
+owner: User
+
+Session
+userId: ObjectId(User)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

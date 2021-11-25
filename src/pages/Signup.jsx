@@ -36,7 +36,7 @@ export default function Signup({ authenticate }) {
       // successful signup
       USER_HELPERS.setUserToken(res.data.accessToken);
       authenticate(res.data.user);
-      navigate(PATHS.HOMEPAGE);
+      navigate(PATHS.HOME_PAGE);
     });
   }
 
