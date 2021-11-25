@@ -3,7 +3,7 @@ export const HOME_PAGE = "/";
 export const SIGNUP_PAGE = "/auth/signup";
 export const LOGIN_PAGE = "/auth/login";
 export const SEARCH_RESULT_PAGE = "/result"; // MFL create this path
-export const SINGLE_RECIPE_PAGE = "/recipe/:id"; // MFL create this path
+export const SINGLE_RECIPE_PAGE = "/recipe/:recipeId"; // MFL create this path
 
 // PROTECTED PAGES created by MFL
 export const ACCOUNT_PAGE = "/account";
