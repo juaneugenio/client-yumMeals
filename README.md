@@ -2,31 +2,34 @@
 
 Frontend:
 
-HomePage /
+HomePage / ✅
 AboutPage /about
-LogIn /login
-Signup /signup
-Search result page
+LogIn /login ✅
+Signup /signup ✅
+Search result page      (NEW!!!!!)
 Profile Page (public) /:user
 Profile Settings (private) /account
-Carnet Page (logged in) /carnet
-Recipe Page (individual, public) /recipe/:recipeId
+Carnet Page (logged in) /carnet      (NEW!!!!!)
+Recipe Page (individual, public) /recipe/:recipeId    (NEW!!!!!)
 
 Backend:
-/auth/login POST
-/auth/signup POST
-/auth/logout DELETE
+/auth/login POST ✅
+/auth/signup POST ✅
+/auth/logout DELETE 
 /auth/delete-account
 /profile/:userId GET
 /profile/:userId/edit PUT
 /auth/me GET (get loggedin user data)
 /feed GET
-/post/:postId GET
-/post/add POST
-/post/edit POST
-/post/delete DELETE
-/post/like PUT
+/recipe/:recipeId GET
+/recipe/add POST
+/recipe/edit POST
+/recipe/delete DELETE
+/recipe/like PUT
+/recipe/rating PUT
 /user/follow PUT
+
+??? Images
 
 IF WE HAVE TIME:
 FOLLOW USERS
