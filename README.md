@@ -45,7 +45,7 @@ following: User[]
 
 title: string
 cuisine : [] : asian, indian, tex-mex, french, ...
-category : string
+category : string : breakfast, lunch, dinner, snack, appetizer
 time-to-prepare : number
 cookingTime : number
 level : string => values (Amateur Chef,Chef, Ultra Pro Chef)
