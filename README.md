@@ -2,31 +2,34 @@
 
 Frontend:
 
-HomePage /
+HomePage / ✅
 AboutPage /about
-LogIn /login
-Signup /signup
-Search result page
+LogIn /login ✅
+Signup /signup ✅
+Search result page      (NEW!!!!!)
 Profile Page (public) /:user
 Profile Settings (private) /account
-Carnet Page (logged in) /carnet
-Recipe Page (individual, public) /recipe/:recipeId
+Carnet Page (logged in) /carnet      (NEW!!!!!)
+Recipe Page (individual, public) /recipe/:recipeId    (NEW!!!!!)
 
 Backend:
-/auth/login POST
-/auth/signup POST
-/auth/logout DELETE
+/auth/login POST ✅
+/auth/signup POST ✅
+/auth/logout DELETE 
 /auth/delete-account
 /profile/:userId GET
 /profile/:userId/edit PUT
 /auth/me GET (get loggedin user data)
 /feed GET
-/post/:postId GET
-/post/add POST
-/post/edit POST
-/post/delete DELETE
-/post/like PUT
+/recipe/:recipeId GET
+/recipe/add POST
+/recipe/edit POST
+/recipe/delete DELETE
+/recipe/like PUT
+/recipe/rating PUT
 /user/follow PUT
+
+??? Images
 
 IF WE HAVE TIME:
 FOLLOW USERS
@@ -45,7 +48,7 @@ following: User[]
 
 title: string
 cuisine : [] : asian, indian, tex-mex, french, ...
-category : string
+category : string : breakfast, lunch, dinner, snack, appetizer
 time-to-prepare : number
 cookingTime : number
 level : string => values (Amateur Chef,Chef, Ultra Pro Chef)
@@ -58,6 +61,24 @@ owner: User
 
 Session
 userId: ObjectId(User)
+
+
+From the videos:
+
+module3-week3-day2 ✅  singleRecipe.page.jsx/recipeservice/creating a mock data
+
+module3-week3-day3 ❌  dealing with cors, http error codes, Handing errors in backend & frontend
+
+module3-week4-day1 ❌  need to check implementing authentication
+
+module3-week4-day2 ❌  navbar links, Implementing the Authentication logic, Setting up local storage with the auth token, Middlewares (IsLoggedIn & IsLoggedOut)
+
+module3-week4-day3 ❌  Backend Deployment Instructions, Deploying the DB, Deploying the Frontend, Updating CORS allowed domains, Create a post feature, Abstraction of the Protected Routes, Image Upload | Adding a, profile picture, Updating the user, Creating a Post (Model | Page | Route) class not recorded creating post.
+
+module3-week5-day1 ❌ Create a Single Post Page, Building the Follow/Unfollow feature
+
+...
+
 
 # Getting Started with Create React App
 

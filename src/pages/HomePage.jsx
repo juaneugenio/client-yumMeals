@@ -6,12 +6,17 @@ import { getRecipes } from "../services/recipeService";
 import "../App.css";
 
 function HomePage() {
-	const [recipes, setRecipes] = useState([])
+
+	const [recipes, setRecipes] = useState([]); //when we go to homepage, initialy we dont have any recipes. user travels to this pages but it will be empty
+	
+	//calling our mockdata (singlerecipe.page)
+	//getRecipe is done in SingleRecipe.page.  using a promise to get the mockdata
 	useEffect(() => {
 		getRecipes().then((dbRecipes) => {;
 		setRecipes(dbRecipes);
 	});
 	}, []);
+
 	return (<div>
 		{recipes.map((recipe) => (
 			
