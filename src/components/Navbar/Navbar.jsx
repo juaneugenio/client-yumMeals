@@ -16,6 +16,9 @@ const Navbar = (props) => {
 			<div className="nav__authLinks">
 				{props.user ? (
 					<>
+						<Link to={PATHS.CREATE_RECIPE_PAGE} className="authLink">
+							Create Recipe
+						</Link>
 						<Link to={PATHS.PROTECTEDPAGE} className="authLink">
 							Protected Page
 						</Link>
