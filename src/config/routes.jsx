@@ -5,6 +5,7 @@ import Signup from "../pages/Signup";
 import ProtectedPage from "../pages/ProtectedPage";
 import * as PATHS from "../utils/paths";
 import SingleRecipe from "../pages/Recipe/SingleRecipe.page";
+import CreateRecipe from "../pages/Recipe/CreateRecipe";
 
 const routes = (props) => {
   const { user } = props;
@@ -27,7 +28,14 @@ const routes = (props) => {
       path: PATHS.SINGLE_RECIPE_PAGE,
       element: <SingleRecipe {...props} />,
     },
-
+    {
+      path: PATHS.CREATE_RECIPE_PAGE,
+      element: user ? (
+        <CreateRecipe {...props} />
+      ) : (
+        <Navigate to={PATHS.LOGIN_PAGE} replace />
+      ),
+    },
     {
       path: PATHS.PROTECTEDPAGE,
       element: user ? (
