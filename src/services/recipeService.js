@@ -1,3 +1,5 @@
+//mock data. this array will mimic what the API will return (if we use one)
+
 const recipes = [
   {
     id: "ris",
@@ -39,6 +41,7 @@ const recipes = [
   },
 ];
 
+//we use a promise to get all the recipes and we will send it to singleRecipe.page
 export function getRecipes() {
   return Promise.resolve(recipes);
 }

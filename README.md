@@ -62,6 +62,24 @@ owner: User
 Session
 userId: ObjectId(User)
 
+
+From the videos:
+
+module3-week3-day2 ✅  singleRecipe.page.jsx/recipeservice/creating a mock data
+
+module3-week3-day3 ❌  dealing with cors, http error codes, Handing errors in backend & frontend
+
+module3-week4-day1 ❌  need to check implementing authentication
+
+module3-week4-day2 ❌  navbar links, Implementing the Authentication logic, Setting up local storage with the auth token, Middlewares (IsLoggedIn & IsLoggedOut)
+
+module3-week4-day3 ❌  Backend Deployment Instructions, Deploying the DB, Deploying the Frontend, Updating CORS allowed domains, Create a post feature, Abstraction of the Protected Routes, Image Upload | Adding a, profile picture, Updating the user, Creating a Post (Model | Page | Route) class not recorded creating post.
+
+module3-week5-day1 ❌ Create a Single Post Page, Building the Follow/Unfollow feature
+
+...
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

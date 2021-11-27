@@ -9,15 +9,26 @@ function SingleRecipe() {
     const [error, setError] = useState("");
     
     useEffect(()=>{
-        getSingleRecipe(recipeId).then((recipe) =>{
-           setSingleRecipe(recipe); 
-        }).catch((message)=>{setError(message);
+        getSingleRecipe(recipeId)
+        .then((recipe) =>{
+           setTimeout(()=>{
+            setSingleRecipe (recipe);
+           }, 2000); //2s to appear the recipe
+        })
+        .catch((message)=>{setError(message);
         });
     },[recipeId]);
-if (error){
-    return <div>{error}</div>
+
+    if (!singleRecipe) {
+        return <div>Loading...</div>
+    }
+
+    if (error){
+        return <div>{error}</div>
+    }
+
+return <div>Single Post Id {recipeId}{JSON.stringify(singleRecipe)} </div>;
 }
-    return <div>Single Post Id {recipeId}{JSON.stringify(singleRecipe)}</div>;
-};
+    //in the video, {JSON.stringify(singleRecipe)} was deleted but if i do that, the function doesnt work
 
 export default SingleRecipe;
