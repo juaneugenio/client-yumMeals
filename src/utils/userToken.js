@@ -11,3 +11,11 @@ export function setUserToken(value) {
 export function removeUserToken() {
   return localStorage.removeItem(CONSTS.ACCESS_TOKEN);
 }
+
+export function sendUser() {
+  return {
+    headers: {
+      authorization: getUserToken(),
+    },
+  };
+}

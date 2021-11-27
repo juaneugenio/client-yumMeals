@@ -1,5 +1,13 @@
-//mock data. this array will mimic what the API will return (if we use one)
+import axios from "axios";
+import { SERVER_URL } from "../utils/consts";
+import { sendUser, getUserToken} from "../utils/userToken";
+import { onError, onSuccess } from "../utils/serverResponseHandlers";
 
+const postService = axios.create({
+  baseURL: `${SERVER_URL}/recipes`,
+});
+
+//mock data. this array will mimic what the API will return (if we use one)
 const recipes = [
   {
     id: "ris",
@@ -54,4 +62,11 @@ export function getSingleRecipe(recipeId) {
   }
 
   return Promise.resolve(singleRecipe);
+}
+
+export function createRecipe(formBody) {
+  return postService
+    .post("/create", formBody, sendUser())
+    .then(onSuccess("create-recipe"))
+    .catch(onError("create-recipe"));
 }
