@@ -1,6 +1,6 @@
 import axios from "axios";
 import { SERVER_URL } from "../utils/consts";
-import { sendUser, getUserToken} from "../utils/userToken";
+import { sendUser, getUserToken } from "../utils/userToken";
 import { onError, onSuccess } from "../utils/serverResponseHandlers";
 
 const postService = axios.create({
@@ -65,6 +65,7 @@ export function getSingleRecipe(recipeId) {
 }
 
 export function createRecipe(formBody) {
+  console.log(`body`, { formBody });
   return postService
     .post("/create", formBody, sendUser())
     .then(onSuccess("create-recipe"))
