@@ -1,34 +1,34 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import {getSingleRecipe} from "../../services/recipeService";
-
+import { getSingleRecipe } from "../../services/recipeService";
 
 function SingleRecipe() {
-    const { recipeId } = useParams();
-    const [singleRecipe, setSingleRecipe] = useState(undefined);
-    const [error, setError] = useState("");
-    
-    useEffect(()=>{
-        getSingleRecipe(recipeId)
-        .then((recipe) =>{
-           setTimeout(()=>{
-            setSingleRecipe (recipe);
-           }, 2000); //2s to appear the recipe
-        })
-        .catch((message)=>{setError(message);
-        });
-    },[recipeId]);
+  const { recipeId } = useParams();
+  const [singleRecipe, setSingleRecipe] = useState(undefined);
+  const [error, setError] = useState("");
 
-    if (!singleRecipe) {
-        return <div>Loading...</div>
-    }
+  useEffect(() => {
+    getSingleRecipe(recipeId)
+      .then((recipe) => {
+        setTimeout(() => {
+          setSingleRecipe(recipe);
+        }, 2000); //2s to appear the recipe
+      })
+      .catch((message) => {
+        setError(message);
+      });
+  }, [recipeId]);
 
-    if (error){
-        return <div>{error}</div>
-    }
+  if (!singleRecipe) {
+    return <div>Loading...</div>;
+  }
 
-return <div>Single Post Id {recipeId} </div>;
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  return <div>Single Post Id {recipeId} </div>;
 }
-    //in the video, {JSON.stringify(singleRecipe)} was deleted but if i do that, the function doesnt work
+//in the video, {JSON.stringify(singleRecipe)} was deleted but if i do that, the function doesnt work
 
 export default SingleRecipe;
