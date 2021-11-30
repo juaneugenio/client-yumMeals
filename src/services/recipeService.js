@@ -1,6 +1,6 @@
 import axios from "axios";
 import { SERVER_URL } from "../utils/consts";
-import { sendUser, getUserToken } from "../utils/userToken";
+import { sendUser } from "../utils/userToken";
 import { onError, onSuccess } from "../utils/serverResponseHandlers";
 
 const postService = axios.create({
