@@ -69,5 +69,5 @@ export function createRecipe(formBody) {
   return postService
     .post("/create", formBody, sendUser())
     .then(onSuccess("create-recipe"))
-    .catch(onError("create-recipe"));
+    .catch(onError(formBody));
 }

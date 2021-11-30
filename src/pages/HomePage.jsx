@@ -17,20 +17,20 @@ function HomePage() {
 	});
 	}, []);
 
-	return (<div class="container-sm">
+	return (<div Name="container-sm">
 		{recipes.map((recipe) => (
-			<div class="row">
-			<div class="col p-3">
-				<div class="card-body">
-				<Link class="btn " key={recipe.id} to={`/recipe/${recipe.id}`} >				
+			<div className="row">
+			<div className="col p-3">
+				<div className="card-body">
+				<Link className="btn " key={recipe.id} to={`/recipe/${recipe.id}`} >				
 				<h1>{recipe.title}</h1>
 				</Link>
 				<br />
-				<img class="card-img-top" height= "100px" src={recipe.image} alt={recipe.title} />
+				<img className="card-img-top" height= "100px" src={recipe.image} alt={recipe.title} />
 				<br />
 				<h2>Steps to prepare the recipe</h2>
-				<ol class="list-group list-group-numbered">{recipe.ingredients.map((step) => (
-					<li class="list-group-item">{step}</li>
+				<ol className="list-group list-group-numbered">{recipe.ingredients.map((step) => (
+					<li className="list-group-item">{step}</li>
 				))}</ol>
 				</div>
 			</div>

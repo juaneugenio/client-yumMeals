@@ -27,7 +27,13 @@ const {title, category, ingredients, stepsRecipe} = form;
 
   function handleNormalInput(event) {
     console.log(event.target.name)
-    setForm(event.target.value);
+    const inputElementBeingChanged = event.target
+    const keyInState = inputElementBeingChanged.name
+    const valueThatUserIsWriting = inputElementBeingChanged.value
+    const newVersionOfStateAfterWeUpdate = {...form}
+    newVersionOfStateAfterWeUpdate[keyInState] = valueThatUserIsWriting
+    setForm(newVersionOfStateAfterWeUpdate);
+    
   }
 
   function handleSubmit(event) {
@@ -43,13 +49,16 @@ const {title, category, ingredients, stepsRecipe} = form;
 
     const formBody = new FormData();
     formBody.append("title", title);
-    formBody.append("category", category);
-    formBody.append("ingredients", ingredients);
-    formBody.append("stepsRecipe", stepsRecipe);
+    console.log(`formBody`, formBody);
+    // formBody.append("category", category);
+    // formBody.append("ingredients", ingredients);
+    // formBody.append("stepsRecipe", stepsRecipe);
 
     // formBody.append("juanPostPic", chosenPicture);
 
-    createRecipe({ title,  category, ingredients, stepsRecipe}).then((res) => {
+    createRecipe({ title, category, ingredients, stepsRecipe}).then((res) => {
+
+      console.log("RES:", res)
       if (!res.success) {
         return setError(res.data);
       }
