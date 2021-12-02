@@ -27,9 +27,9 @@ function HomePage() {
           <div className="col p-3">
             <div className="card-body">
               <Link
-                className="btn "
-                key={recipe.id}
-                to={`/recipe/${recipe.id}`}
+                className="btn"
+                key={recipe._id}
+                to={`/recipe/${recipe._id}`}
               >
                 <h1>{recipe.title}</h1>
               </Link>
@@ -44,7 +44,9 @@ function HomePage() {
               <h2>Steps to prepare the recipe</h2>
               <ol className="list-group list-group-numbered">
                 {recipe.ingredients.map((step) => (
-                  <li className="list-group-item">{step}</li>
+                  <li className="list-group-item" key={recipe._id}>
+                    {step}
+                  </li>
                 ))}
               </ol>
             </div>
