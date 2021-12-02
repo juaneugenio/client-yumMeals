@@ -9,8 +9,9 @@ export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
     username: "",
     password: "",
+    email: "",
   });
-  const { username, password } = form;
+  const { username, password, email } = form;
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -24,6 +25,7 @@ export default function Signup({ authenticate }) {
     const credentials = {
       username,
       password,
+      email,
     };
     signup(credentials).then((res) => {
       if (!res.status) {
@@ -42,8 +44,12 @@ export default function Signup({ authenticate }) {
 
   return (
     <div>
-      <h1>Sign Up</h1>
+      <img
+        src="https://images.unsplash.com/reserve/EnF7DhHROS8OMEp2pCkx_Dufer%20food%20overhead%20hig%20res.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2078&q=80"
+        alt="background signup form"
+      />
       <form onSubmit={handleFormSubmission} className="auth__form">
+        <h3>Sign Up</h3>
         <label htmlFor="input-username">Username</label>
         <input
           id="input-username"
@@ -53,6 +59,18 @@ export default function Signup({ authenticate }) {
           value={username}
           onChange={handleInputChange}
           required
+        />
+
+        <label htmlFor="input-password">Password</label>
+        <input
+          id="input-email"
+          type="email"
+          name="email"
+          placeholder="john@doe.com"
+          value={email}
+          onChange={handleInputChange}
+          required
+          minLength="8"
         />
 
         <label htmlFor="input-password">Password</label>

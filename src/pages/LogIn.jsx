@@ -39,34 +39,39 @@ export default function LogIn({ authenticate }) {
   }
   return (
     <div>
+      <img
+        className="food-image"
+        src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+      />
       <div className="background">
         <div className="shape"></div>
         <div className="shape"></div>
       </div>
-      <img
-        className="food"
-        src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
-        alt="foodie"
-      />
-      <form onSubmit={handleFormSubmission} className="signup__form">
-        <label htmlFor="input-username">Username</label>
+      <form onSubmit={handleFormSubmission}>
+        <h2>Welcome</h2>
+        <label htmlFor="input-username">
+          <h6>Username</h6>
+        </label>
         <input
-          className="input"
+          className="input-login"
           id="input-username"
           type="text"
           name="username"
-          placeholder="username"
+          placeholder="Here your name"
           value={username}
           onChange={handleInputChange}
           required
         />
 
-        <label htmlFor="input-password">Password</label>
+        <label htmlFor="input-password">
+          <h6>Password</h6>
+        </label>
         <input
+          className="input-login"
           id="input-password"
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Here your password"
           value={password}
           onChange={handleInputChange}
           required
@@ -80,8 +85,8 @@ export default function LogIn({ authenticate }) {
           </div>
         )}
 
-        <button className="button__submit" type="submit">
-          Submit
+        <button className="button-login" type="submit">
+          Login
         </button>
       </form>
     </div>
