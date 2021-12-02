@@ -10,11 +10,11 @@ function CreateRecipe() {
     title: "",
     category: "",
     ingredients: "",
-    stepsRecipe: ""
+    stepsRecipe: "",
   });
-  console.log("FORM:", form)
-const {title, category, ingredients, stepsRecipe} = form;
+  console.log("FORM:", form);
 
+  const { title, category, ingredients, stepsRecipe } = form;
   // const [chosenPicture, setChosenPicture] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -26,8 +26,8 @@ const {title, category, ingredients, stepsRecipe} = form;
   // }
 
   function handleNormalInput(event) {
-    console.log(event.target.name)
-    setForm(event.target.value);
+    console.log(event.target.name);
+    setForm({ ...form, [event.target.name]: event.target.value });
   }
 
   function handleSubmit(event) {
@@ -49,7 +49,7 @@ const {title, category, ingredients, stepsRecipe} = form;
 
     // formBody.append("juanPostPic", chosenPicture);
 
-    createRecipe({ title,  category, ingredients, stepsRecipe}).then((res) => {
+    createRecipe({ title, category, ingredients, stepsRecipe }).then((res) => {
       if (!res.success) {
         return setError(res.data);
       }
@@ -70,55 +70,55 @@ const {title, category, ingredients, stepsRecipe} = form;
         {/* <input className="inputFile" type="text"/>   */}
         {/* <input type="number" /> */}
         <fieldset>
-        <legend>Create your Recipe</legend>
-        <label>
-          Title of your Recipe*:
-          <input
-            value={title}
-            onChange={handleNormalInput}
-            type="text"
-            placeholder="Tell us more!"
-            name="title"
-          />
-        </label>
-        <br />
-        <label>
-          {" "}
-          Category of your recipe:
-          <input
-            value={category}
-            onChange={handleNormalInput}
-            type="text"
-            placeholder="breakfast, lunch, dinner, snack, appetizer"
-            name="category"
-          />
-        </label>
-        <br />
-        <label>
-          {" "}
-          Ingredients of your recipe*:
-          <input
-            value={ingredients}
-            onChange={handleNormalInput}
-            type="text"
-            placeholder="butter, beef, carrot,..."
-            name="ingredients"
-          />
-        </label>
-        <br />
-        <label>
-          {" "}
-          Steps of your recipe*:
-          <input
-            value={stepsRecipe}
-            onChange={handleNormalInput}
-            type="text"
-            placeholder="First, you need to boil the carrots"
-            name="stepsRecipe"
-          />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
+          <legend>Create your Recipe</legend>
+          <label>
+            Title of your Recipe*:
+            <input
+              value={title}
+              onChange={handleNormalInput}
+              type="text"
+              placeholder="Tell us more!"
+              name="title"
+            />
+          </label>
+          <br />
+          <label>
+            {" "}
+            Category of your recipe:
+            <input
+              value={category}
+              onChange={handleNormalInput}
+              type="text"
+              placeholder="breakfast, lunch, dinner, snack, appetizer"
+              name="category"
+            />
+          </label>
+          <br />
+          <label>
+            {" "}
+            Ingredients of your recipe*:
+            <input
+              value={ingredients}
+              onChange={handleNormalInput}
+              type="text"
+              placeholder="butter, beef, carrot,..."
+              name="ingredients"
+            />
+          </label>
+          <br />
+          <label>
+            {" "}
+            Steps of your recipe*:
+            <input
+              value={stepsRecipe}
+              onChange={handleNormalInput}
+              type="text"
+              placeholder="First, you need to boil the carrots"
+              name="stepsRecipe"
+            />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
         </fieldset>
       </form>
     </div>

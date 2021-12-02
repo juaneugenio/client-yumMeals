@@ -51,17 +51,23 @@ const recipes = [
 
 //we use a promise to get all the recipes and we will send it to singleRecipe.page
 export function getRecipes() {
-  return Promise.resolve(recipes);
+  const authorization = getUserToken();
+  console.log("authorization:", authorization);
+  return postService
+    .get("/", {
+      headers: {
+        authorization: getUserToken(),
+      },
+    })
+    .then(onSuccess("getRecipes"))
+    .catch(onError("getRecipes"));
 }
 
 export function getSingleRecipe(recipeId) {
-  const singleRecipe = recipes.find((element) => element.id === recipeId);
-
-  if (!singleRecipe) {
-    return Promise.reject("This recipe doesn't exist!");
-  }
-
-  return Promise.resolve(singleRecipe);
+  return postService
+    .get(`/${recipeId}`)
+    .then(onSuccess("getSingleRecipe"))
+    .catch(onError("getSingleRecipe"));
 }
 
 export function createRecipe(formBody) {
