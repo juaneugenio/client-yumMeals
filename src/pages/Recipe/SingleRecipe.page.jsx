@@ -7,8 +7,10 @@ function SingleRecipe() {
     const { recipeId } = useParams();
     const [singleRecipe, setSingleRecipe] = useState(undefined);
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(true);
     
     useEffect(()=>{
+        setLoading(true)
         getSingleRecipe(recipeId)
         .then((recipe) =>{
            setTimeout(()=>{
