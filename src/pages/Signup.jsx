@@ -5,6 +5,8 @@ import "./auth.css";
 import * as PATHS from "../utils/paths";
 import * as USER_HELPERS from "../utils/userToken";
 
+import "./auth.css";
+
 export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
     username: "",
@@ -48,21 +50,27 @@ export default function Signup({ authenticate }) {
         src="https://images.unsplash.com/reserve/EnF7DhHROS8OMEp2pCkx_Dufer%20food%20overhead%20hig%20res.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2078&q=80"
         alt="background signup form"
       />
-      <form onSubmit={handleFormSubmission} className="auth__form">
-        <h3>Sign Up</h3>
-        <label htmlFor="input-username">Username</label>
+      <form onSubmit={handleFormSubmission} className="form-signup">
+        <h2>Sign Up</h2>
+        <label className="label-signup" htmlFor="input-username">
+          Username
+        </label>
         <input
+          className="input-signup"
           id="input-username"
           type="text"
           name="username"
-          placeholder="Text"
+          placeholder="Here your username"
           value={username}
           onChange={handleInputChange}
           required
         />
 
-        <label htmlFor="input-password">Password</label>
+        <label className="label-signup" htmlFor="input-password">
+          E-mail
+        </label>
         <input
+          className="input-signup"
           id="input-email"
           type="email"
           name="email"
@@ -73,12 +81,15 @@ export default function Signup({ authenticate }) {
           minLength="8"
         />
 
-        <label htmlFor="input-password">Password</label>
+        <label className="label-signup" htmlFor="input-password">
+          Password
+        </label>
         <input
+          className="input-signup"
           id="input-password"
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Here your password"
           value={password}
           onChange={handleInputChange}
           required
@@ -92,8 +103,8 @@ export default function Signup({ authenticate }) {
           </div>
         )}
 
-        <button className="button__submit" type="submit">
-          Submit
+        <button className="button-signup" type="submit">
+          Signup
         </button>
       </form>
     </div>

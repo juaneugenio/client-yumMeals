@@ -12,7 +12,10 @@ function HomePage() {
   //getRecipe is done in SingleRecipe.page.  using a promise to get the mockdata
   useEffect(() => {
     getRecipes().then((dbRecipes) => {
-      setRecipes(dbRecipes);
+      if (!dbRecipes.success) {
+        return console.log(dbRecipes.data);
+      }
+      setRecipes(dbRecipes.data.recipes);
     });
   }, []);
 

@@ -47,9 +47,9 @@ export default function LogIn({ authenticate }) {
         <div className="shape"></div>
         <div className="shape"></div>
       </div>
-      <form onSubmit={handleFormSubmission}>
+      <form onSubmit={handleFormSubmission} className="form-login">
         <h2>Welcome</h2>
-        <label htmlFor="input-username">
+        <label htmlFor="input-username" className="label-login">
           <h6>Username</h6>
         </label>
         <input
@@ -63,7 +63,7 @@ export default function LogIn({ authenticate }) {
           required
         />
 
-        <label htmlFor="input-password">
+        <label htmlFor="input-password" className="label-login">
           <h6>Password</h6>
         </label>
         <input
@@ -80,8 +80,7 @@ export default function LogIn({ authenticate }) {
 
         {error && (
           <div className="error-block">
-            <p>There was an error submiting the form:</p>
-            <p>{error.message}</p>
+            <p>{error.message}. Please, put the correct credentials</p>
           </div>
         )}
 
