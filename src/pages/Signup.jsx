@@ -5,8 +5,6 @@ import "./auth.css";
 import * as PATHS from "../utils/paths";
 import * as USER_HELPERS from "../utils/userToken";
 
-import "./auth.css";
-
 export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
     username: "",
@@ -34,7 +32,7 @@ export default function Signup({ authenticate }) {
         // unsuccessful signup
         console.error("Signup was unsuccessful: ", res);
         return setError({
-          message: "Signup was unsuccessful! Please check the console.",
+          message: "Signup was unsuccessful!",
         });
       }
       // successful signup
@@ -78,7 +76,6 @@ export default function Signup({ authenticate }) {
           value={email}
           onChange={handleInputChange}
           required
-          minLength="8"
         />
 
         <label className="label-signup" htmlFor="input-password">
@@ -97,12 +94,10 @@ export default function Signup({ authenticate }) {
         />
 
         {error && (
-          <div className="error-block">
-            <p>There was an error submiting the form:</p>
-            <p>{error.message}</p>
+          <div className="error-signup">
+            <p>{error.message} Please, check if all fields are correct.</p>
           </div>
         )}
-
         <button className="button-signup" type="submit">
           Signup
         </button>
