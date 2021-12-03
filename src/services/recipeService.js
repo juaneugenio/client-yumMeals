@@ -71,11 +71,11 @@ export function getRecipes() {
 //   return Promise.resolve(singleRecipe);
 // }
 
-export function getSingleRecipe(recipeId) {
+export function getSingleRecipe(id) {
   return recipeService
-    .get(`/${recipeId}`)
+    .get(`/${id}`)
     .then(onSuccess("getSingleRecipe"))
-    .catch(onError("getSingleRecipe"));
+    .catch(onError(id));
 }
 export function createRecipe(formBody) {
   console.log(`body`, { formBody });

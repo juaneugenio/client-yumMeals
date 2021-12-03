@@ -9,8 +9,9 @@ export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
     username: "",
     password: "",
+    email: "",
   });
-  const { username, password } = form;
+  const { username, password, email } = form;
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -24,13 +25,14 @@ export default function Signup({ authenticate }) {
     const credentials = {
       username,
       password,
+      email,
     };
     signup(credentials).then((res) => {
       if (!res.status) {
         // unsuccessful signup
         console.error("Signup was unsuccessful: ", res);
         return setError({
-          message: "Signup was unsuccessful! Please check the console.",
+          message: "Signup was unsuccessful!",
         });
       }
       // successful signup
@@ -42,25 +44,49 @@ export default function Signup({ authenticate }) {
 
   return (
     <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleFormSubmission} className="auth__form">
-        <label htmlFor="input-username">Username</label>
+      <img
+        src="https://images.unsplash.com/reserve/EnF7DhHROS8OMEp2pCkx_Dufer%20food%20overhead%20hig%20res.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2078&q=80"
+        alt="background signup form"
+      />
+      <form onSubmit={handleFormSubmission} className="form-signup">
+        <h2>Sign Up</h2>
+        <label className="label-signup" htmlFor="input-username">
+          Username
+        </label>
         <input
+          className="input-signup"
           id="input-username"
           type="text"
           name="username"
-          placeholder="Text"
+          placeholder="Here your username"
           value={username}
           onChange={handleInputChange}
           required
         />
 
-        <label htmlFor="input-password">Password</label>
+        <label className="label-signup" htmlFor="input-email">
+          E-mail
+        </label>
         <input
+          className="input-signup"
+          id="input-email"
+          type="email"
+          name="email"
+          placeholder="john@doe.com"
+          value={email}
+          onChange={handleInputChange}
+          required
+        />
+
+        <label className="label-signup" htmlFor="input-password">
+          Password
+        </label>
+        <input
+          className="input-signup"
           id="input-password"
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Here your password"
           value={password}
           onChange={handleInputChange}
           required
@@ -68,14 +94,12 @@ export default function Signup({ authenticate }) {
         />
 
         {error && (
-          <div className="error-block">
-            <p>There was an error submiting the form:</p>
-            <p>{error.message}</p>
+          <div className="error-signup">
+            <p>{error.message} Please, check if all fields are correct.</p>
           </div>
         )}
-
-        <button className="button__submit" type="submit">
-          Submit
+        <button className="button-signup" type="submit">
+          Signup
         </button>
       </form>
     </div>

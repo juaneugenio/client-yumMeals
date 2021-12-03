@@ -16,12 +16,13 @@ function CreateRecipe() {
   const [form, setForm] = useState({
     title: "",
     category: "",
+    ingredients:"",
     cookingTime: "",
-    ingredients: "",
     stepsRecipe: "",
   });
   // console.log("FORM:", form);
   const { title, category, ingredients, stepsRecipe } = form;
+  // const [inputIngredients, setInputIngredients] = useState([{ ingredients: "" }]);
 
   // const [chosenPicture, setChosenPicture] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -127,6 +128,8 @@ function CreateRecipe() {
                     placeholder="butter, beef, carrot,..."
                     name="ingredients"/>
             </Form.Group>
+
+            
 
             <Form.Group className="mb-3">
                 <Form.Label>Steps of your recipe*:</Form.Label>

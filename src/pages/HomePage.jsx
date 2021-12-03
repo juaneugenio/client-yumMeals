@@ -33,7 +33,7 @@ function HomePage() {
 				<Card.Img variant="top" src={recipe.image} alt={recipe.title} />
 					<Card.Body>
 					<Card.Title>
-				<Card.Link key={recipe.id} href={`/recipe/${recipe.id}`}>{recipe.title}
+				<Card.Link key={recipe._id} href={`/recipe/${recipe._id}`}>{recipe.title}
 				</Card.Link>
 				</Card.Title>
 				<br />
