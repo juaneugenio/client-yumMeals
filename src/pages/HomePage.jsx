@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getRecipes } from "../services/recipeService";
 import "../App.css";
+// import { Card, Container } from "react-bootstrap";
 
 function HomePage() {
   const [recipes, setRecipes] = useState([]); //when we go to homepage, initialy we dont have any recipes. user travels to this pages but it will be empty
@@ -19,9 +20,9 @@ function HomePage() {
       setRecipes(dbRecipes.data.recipes);
     });
   }, []);
-
   return (
     <div className="container-sm">
+      <h3>Home page</h3>
       {recipes.map((recipe) => (
         <div className="row">
           <div className="col p-3">

@@ -27,7 +27,7 @@ function SingleRecipe() {
     return <div>{error}</div>;
   }
 
-  return <div>Single Post Id {recipeId}</div>;
+  return <div>Single Post Id {recipeId} </div>;
 }
 //in the video, {JSON.stringify(singleRecipe)} was deleted but if i do that, the function doesnt work
 
