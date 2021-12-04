@@ -1,7 +1,6 @@
 /** @format */
-import { Card, Container } from "react-bootstrap";
+import { Card} from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { getRecipes } from "../services/recipeService";
 import "../App.css";
 

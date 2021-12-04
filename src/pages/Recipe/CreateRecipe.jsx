@@ -22,7 +22,6 @@ function CreateRecipe() {
   });
   // console.log("FORM:", form);
   const { title, category, ingredients, stepsRecipe } = form;
-  // const [inputIngredients, setInputIngredients] = useState([{ ingredients: "" }]);
 
   // const [chosenPicture, setChosenPicture] = useState("");
   const [isLoading, setIsLoading] = useState(false);
