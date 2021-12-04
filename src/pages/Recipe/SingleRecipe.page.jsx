@@ -19,17 +19,17 @@ function SingleRecipe() {
             if (!recipe.success) {
                 return setError("setError:",recipe.data)
             }
-           setTimeout(()=>{
+        //    setTimeout(()=>{
             setSingleRecipe (recipe.data.recipe);
             console.log("recipe.data:",recipe.data)
-            setLoading(false);
-           }, 2000); //2s to appear the recipe
+            // setLoading(false);
+        //    }, 2000); //2s to appear the recipe
         })
         .catch((message)=>{setError(message);
         })
-        // .finally(() => {
-        //     setLoading(false);
-        //   });
+        .finally(() => {
+            setLoading(false);
+          });
     },[recipeId]);
 
     if (loading) {
