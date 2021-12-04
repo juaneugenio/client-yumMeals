@@ -7,7 +7,6 @@ import { getSingleRecipe } from "../../services/recipeService";
 function SingleRecipe() {
   const { recipeId } = useParams();
   const [singleRecipe, setSingleRecipe] = useState(undefined);
-  console.log("singleRecipe1:", singleRecipe);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -18,11 +17,9 @@ function SingleRecipe() {
         if (!recipe.success) {
           return setError("setError:", recipe.data);
         }
-        //    setTimeout(()=>{
+
         setSingleRecipe(recipe.data.recipe);
         console.log("recipe.data:", recipe.data);
-        // setLoading(false);
-        //    }, 2000); //2s to appear the recipe
       })
       .catch((message) => {
         setError(message);

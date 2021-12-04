@@ -21,22 +21,6 @@ export function getRecipes() {
     .catch(onError("getRecipes"));
 }
 
-export function getSingleRecipe(recipeId) {
-  return postService
-    .get(`/${recipeId}`)
-    .then(onSuccess("getSingleRecipe"))
-    .catch(onError("getSingleRecipe"));
-}
-// export function getSingleRecipe(recipeId) {
-//   const singleRecipe = recipes.find((element) => element.id === recipeId);
-
-//   if (!singleRecipe) {
-//     return Promise.reject("This recipe doesn't exist!");
-//   }
-
-//   return Promise.resolve(singleRecipe);
-// }
-
 export function getSingleRecipe(id) {
   return recipeService
     .get(`/${id}`)

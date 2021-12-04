@@ -1,10 +1,9 @@
 /** @format */
 import { Card, Container } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { getRecipes } from "../services/recipeService";
 import "../App.css";
-// import { Card, Container } from "react-bootstrap";
 
 function HomePage() {
   const [recipes, setRecipes] = useState([]); //when we go to homepage, initialy we dont have any recipes. user travels to this pages but it will be empty
@@ -30,7 +29,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
+    <Container>
       {recipes.map((recipe) => (
         <Card className="p-3" style={{ width: "18rem" }}>
           <Card.Img variant="top" src={recipe.image} alt={recipe.title} />
@@ -48,7 +47,7 @@ function HomePage() {
           </Card.Body>
         </Card>
       ))}
-    </div>
+    </Container>
   );
 }
 
