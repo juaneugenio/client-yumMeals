@@ -64,11 +64,7 @@ export default function Signup({ authenticate }) {
           required
         />
 
-<<<<<<< HEAD
-        <label className="label-signup" htmlFor="input-password">
-=======
         <label className="label-signup" htmlFor="input-email">
->>>>>>> dev
           E-mail
         </label>
         <input

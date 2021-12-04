@@ -44,29 +44,12 @@ export default function LogIn({ authenticate }) {
         src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
         alt="Enjoying dinner"
       />
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
       <div className="background">
         <div className="shape"></div>
         <div className="shape"></div>
       </div>
       <form onSubmit={handleFormSubmission} className="form-login">
         <h2>Welcome</h2>
-<<<<<<< HEAD
-
-        <label htmlFor="input-username" className="label-login">
-          <h6>Username</h6>
-        </label>
-        <input
-          className="input-login"
-          id="input-username"
-          type="text"
-          name="username"
-          placeholder="Here your name"
-          value={username}
-=======
         <label htmlFor="input-email" className="label-login">
           <h6>Email</h6>
         </label>
@@ -77,7 +60,6 @@ export default function LogIn({ authenticate }) {
           name="email"
           placeholder="Here your email"
           value={email}
->>>>>>> dev
           onChange={handleInputChange}
           required
         />

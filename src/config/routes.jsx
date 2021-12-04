@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
 import HomePage from "../pages/HomePage";
+import Profile from "../pages/profile/ProfilePage";
 import Login from "../pages/LogIn";
 import Signup from "../pages/Signup";
 import ProtectedPage from "../pages/ProtectedPage";
@@ -32,6 +33,14 @@ const routes = (props) => {
       path: PATHS.CREATE_RECIPE_PAGE,
       element: user ? (
         <CreateRecipe {...props} />
+      ) : (
+        <Navigate to={PATHS.LOGIN_PAGE} replace />
+      ),
+    },
+    {
+      path: PATHS.CURRENT_USER_PROFILE,
+      element: user ? (
+        <Profile {...props} />
       ) : (
         <Navigate to={PATHS.LOGIN_PAGE} replace />
       ),
