@@ -64,7 +64,7 @@ export default function Signup({ authenticate }) {
           required
         />
 
-        <label className="label-signup" htmlFor="input-password">
+        <label className="label-signup" htmlFor="input-email">
           E-mail
         </label>
         <input

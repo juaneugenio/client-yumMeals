@@ -3,7 +3,7 @@ import { SERVER_URL } from "../utils/consts";
 import { sendUser, getUserToken } from "../utils/userToken";
 import { onError, onSuccess } from "../utils/serverResponseHandlers";
 
-const postService = axios.create({
+const recipeService = axios.create({
   baseURL: `${SERVER_URL}/recipes`,
 });
 
@@ -11,7 +11,7 @@ const postService = axios.create({
 export function getRecipes() {
   const authorization = getUserToken();
   console.log("authorization:", authorization);
-  return postService
+  return recipeService
     .get("/", {
       headers: {
         authorization: getUserToken(),
@@ -27,11 +27,26 @@ export function getSingleRecipe(recipeId) {
     .then(onSuccess("getSingleRecipe"))
     .catch(onError("getSingleRecipe"));
 }
+// export function getSingleRecipe(recipeId) {
+//   const singleRecipe = recipes.find((element) => element.id === recipeId);
 
+//   if (!singleRecipe) {
+//     return Promise.reject("This recipe doesn't exist!");
+//   }
+
+//   return Promise.resolve(singleRecipe);
+// }
+
+export function getSingleRecipe(id) {
+  return recipeService
+    .get(`/${id}`)
+    .then(onSuccess("getSingleRecipe"))
+    .catch(onError(id));
+}
 export function createRecipe(formBody) {
   console.log(`body`, { formBody });
-  return postService
+  return recipeService
     .post("/create", formBody, sendUser())
     .then(onSuccess("create-recipe"))
-    .catch(onError("create-recipe"));
+    .catch(onError(formBody));
 }
