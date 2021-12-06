@@ -17,12 +17,12 @@ export default function Profile(props) {
     }
 
     //lets create a new form body because we are uploading files.
-    //FormData: It proveides a way to easily construct a set of key/value representing the form fields and their values
+    //FormData: It provides a way to easily construct a set of key/value representing the form fields and their values
     const formBody = new window.FormData();
     formBody.append("profilePic", chosenPicture); //profilePic  comes from index router.post
     formBody.append("userId", user._id);
 
-    //the end point comes from index and we send the FormBody
+    //the end point comes from index and we send the formBody
     axios
       .post("${SERVER_URL}/user/updateProfilePic", formBody)
       .then((res) => {
