@@ -47,3 +47,11 @@ export function deleteSingleRecipe(id) {
     .then(onSuccess("deleted-recipe"))
     .catch(onError("deleted-recipe"));
 }
+
+export function createRating(formBody) {
+  console.log(`body`, { formBody });
+  return recipeService
+    .post("/comment", formBody, sendUser())
+    .then(onSuccess("create-rating"))
+    .catch(onError(formBody));
+}
