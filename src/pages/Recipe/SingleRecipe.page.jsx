@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Container, Form, Button} from "react-bootstrap";
-import { Link } from "react-router-dom";
-import LoadingComponent from "../../components/Loading/index";
+// import LoadingComponent from "../../components/Loading/index";
 import { useParams, useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
 import {
@@ -18,10 +17,10 @@ function SingleRecipe() {
   const [singleRecipe, setSingleRecipe] = useState(undefined);
   console.log("singleRecipe1:", singleRecipe);
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);  
+  const [Loading, setLoading] = useState(true);  
 
     useEffect(() => {
-    setIsLoading(true);
+    setLoading(true);
     getSingleRecipe(recipeId)
       .then((recipe) => {
         if (!recipe.success) {
@@ -44,6 +43,8 @@ function SingleRecipe() {
     return setForm({ ...form, [name]: value });
   }
 
+  //CREATE THE RATING COMPONENT
+//FIRST THE CONST
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   const [form, setForm] = useState({
@@ -51,12 +52,13 @@ function SingleRecipe() {
     comment: "",
   });
   const { userRating, comment, } = form;
-  
+
+  //IN THE SUBMIT EVENT WE PUT THE RATING FUNCTION  
   function handleSubmit(event) {
     event.preventDefault();
-    setIsLoading(true);
+    setLoading(true);
     setError(false);
-
+//THIS FUNCTION COMES FROM THE RECIPE SERVICE
   createRating({ userRating, comment, recipeId}).then(
     (res) => {
       console.log("RES:", res);
@@ -67,8 +69,26 @@ function SingleRecipe() {
     }
   );
   }
+
+   // It comes from RecipeService
+   function handleDeleteSingleRecipe() {
+    setLoading(true);
+    deleteSingleRecipe(recipeId)
+      .then((response) => {
+        if (!response.success) {
+          return setError(response.data);
+        }
+        navigate(PATHS.HOME_PAGE);
+      })
+      .catch((message) => {
+        setError(message);
+      })
+      .finally(() => {
+       setLoading(false);
+       });
+  }
   
-  if (isLoading) {
+  if (Loading) {
     return <div>Loading...</div>;
   }
 
