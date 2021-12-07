@@ -9,7 +9,7 @@ const recipeService = axios.create({
 
 //we use a promise to get all the recipes and we will send it to singleRecipe.page
 export function getRecipes() {
-  const authorization = getUserToken();
+  // const authorization = getUserToken();
 
   return recipeService
     .get("/", {
@@ -55,3 +55,6 @@ export function createRating(formBody) {
     .then(onSuccess("create-rating"))
     .catch(onError(formBody));
 }
+// Funtion to edit/update a singleRecipe and to be used in the SingleRecipe.page
+
+export function updateSingleRecipe() {}
