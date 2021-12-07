@@ -9,7 +9,7 @@ const userService = axios.create({
 
 export function updateProfileImage(formBody) {
   return userService
-    .post("/updateProfileImage", formBody, sendUser())
+    .patch("/updateProfileImage", formBody, sendUser())
     .then(onSuccess("update-profile"))
     .catch(onError("update-profile"));
 }
