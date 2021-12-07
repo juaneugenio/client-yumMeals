@@ -7,6 +7,7 @@ import ProtectedPage from "../pages/ProtectedPage";
 import * as PATHS from "../utils/paths";
 import SingleRecipe from "../pages/Recipe/SingleRecipe.page";
 import CreateRecipe from "../pages/Recipe/CreateRecipe";
+import UpdateProfile from "../pages/updateProfile/UpdateProfilePage";
 
 const routes = (props) => {
   const { user } = props;
@@ -41,6 +42,14 @@ const routes = (props) => {
       path: PATHS.CURRENT_USER_PROFILE,
       element: user ? (
         <Profile {...props} />
+      ) : (
+        <Navigate to={PATHS.LOGIN_PAGE} replace />
+      ),
+    },
+    {
+      path: PATHS.EDIT_PROFILE_PAGE,
+      element: user ? (
+        <UpdateProfile {...props} />
       ) : (
         <Navigate to={PATHS.LOGIN_PAGE} replace />
       ),

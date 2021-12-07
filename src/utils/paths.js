@@ -15,5 +15,6 @@ export const CREATE_RECIPE_PAGE = "/recipe/create";
 export const EDIT_RECIPE_PAGE = "/recipe/edit"; // edit and delete the recipe
 export const RATINGS_COMMENT_PAGE = "/recipe/comment";
 export const CURRENT_USER_PROFILE = "/profile"; //profile of the user.
+export const EDIT_PROFILE_PAGE = "/profile/edit"; // edit the profile
 
 export const PROTECTEDPAGE = "/protected";
