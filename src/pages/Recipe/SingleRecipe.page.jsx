@@ -13,6 +13,7 @@ function SingleRecipe() {
   const navigate = useNavigate();
   const { recipeId } = useParams();
   const [singleRecipe, setSingleRecipe] = useState(undefined);
+  console.log("singleRecipe1:", singleRecipe);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
