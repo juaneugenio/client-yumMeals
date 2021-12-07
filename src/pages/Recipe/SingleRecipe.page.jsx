@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import { Card, Container, Form} from "react-bootstrap";
+import { Card, Container, Form, Button} from "react-bootstrap";
 import { useParams } from "react-router";
 import { getSingleRecipe } from "../../services/recipeService";
 import "../Recipe/SingleRecipePage.css";
-// import { createRating } from "../../services/ratingService";
+import { createRating } from "../../services/recipeService";
 import { useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
 
@@ -15,14 +15,7 @@ function SingleRecipe() {
   console.log("singleRecipe1:", singleRecipe);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [rating, setRating] = useState(null);
-  const [hover, setHover] = useState(null);
-
-  const [form, setForm] = useState({
-    userRating: "",
-    comment: "",
-  });
-  const { userRating, comment, } = form;
+  
 
     useEffect(() => {
     setIsLoading(true);
@@ -46,35 +39,33 @@ function SingleRecipe() {
   }, [recipeId]);
 
   function handleNormalInput(event) {
-    console.log(event.target.name);
-    const inputElementBeingChanged = event.target;
-    const keyInState = inputElementBeingChanged.name;
-    const valueThatUserIsWriting = inputElementBeingChanged.value;
-    const newVersionOfStateAfterWeUpdate = { ...form };
-    newVersionOfStateAfterWeUpdate[keyInState] = valueThatUserIsWriting;
-    setForm(newVersionOfStateAfterWeUpdate);
+    const { name, value } = event.target;
+    return setForm({ ...form, [name]: value });
   }
 
+  const [rating, setRating] = useState(null);
+  const [hover, setHover] = useState(null);
+  const [form, setForm] = useState({
+    userRating: "",
+    comment: "",
+  });
+  const { userRating, comment, } = form;
+  
   function handleSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
     setError(false);
+
+  createRating({ userRating, comment, recipeId}).then(
+    (res) => {
+      console.log("RES:", res);
+      if (!res.success) {
+        return setError(res.data);
+      }
+      navigate(PATHS.HOME_PAGE);
+    }
+  );
   }
-
-  const formBody = new FormData();
-  formBody.append("userRating", userRating);
-  formBody.append("comment", comment);
-
-//   createRating({ userRating, comment}).then(
-//     (res) => {
-//       console.log("RES:", res);
-//       if (!res.success) {
-//         return setError(res.data);
-//       }
-//       navigate(PATHS.HOME_PAGE);
-//     }
-//   );
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -97,7 +88,6 @@ function SingleRecipe() {
             ))}
           </ol>
         </Card.Body>
-      </Card>
 
       <Form onSubmit={handleSubmit}>
         <fieldset>
@@ -109,9 +99,10 @@ function SingleRecipe() {
                 <Form.Label>
                   <input
                     type="radio"
-                    name="rating"
+                    name="userRating"
                     value={ratingValue}
                     onClick={() => setRating(ratingValue)}
+                    onChange={handleNormalInput}
                   />
                   <FaStar
                     className="star"
@@ -126,13 +117,24 @@ function SingleRecipe() {
               );
             })}
           </Form.Group>
+          
+          <Form.Group>
+          <Form.Control 
+          as="textarea" 
+          rows={3} 
+          type="text" 
+          name="comment" 
+          value={comment} 
+          onChange={handleNormalInput} 
+          placeholder="Write your comment about the recipe"/>
 
-
+          </Form.Group>
+          <Button type="submit">Submit</Button>
         </fieldset>
       </Form>
+      </Card>
     </Container>
   );
 }
-//in the video, {JSON.stringify(singleRecipe)} was deleted but if i do that, the function doesnt work
 
 export default SingleRecipe;

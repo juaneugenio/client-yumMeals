@@ -84,3 +84,11 @@ export function createRecipe(formBody) {
     .then(onSuccess("create-recipe"))
     .catch(onError(formBody));
 }
+
+export function createRating(formBody) {
+  console.log(`body`, { formBody });
+  return recipeService
+    .post("/comment", formBody, sendUser())
+    .then(onSuccess("create-rating"))
+    .catch(onError(formBody));
+}
