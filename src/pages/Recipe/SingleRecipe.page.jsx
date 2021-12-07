@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
 import { Card, Container, Form, Button} from "react-bootstrap";
-import { useParams } from "react-router";
-import { getSingleRecipe } from "../../services/recipeService";
-import "../Recipe/SingleRecipePage.css";
-import { createRating } from "../../services/recipeService";
-import { useNavigate } from "react-router";
+// import LoadingComponent from "../../components/Loading/index";
+import { useParams, useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
+import {
+  getSingleRecipe,
+  deleteSingleRecipe,
+} from "../../services/recipeService";
+import "../Recipe/SingleRecipePage.css";
+import { FaStar } from "react-icons/fa";
+import { createRating } from "../../services/recipeService";
 
 function SingleRecipe() {
   const { recipeId } = useParams();
@@ -14,27 +17,24 @@ function SingleRecipe() {
   const [singleRecipe, setSingleRecipe] = useState(undefined);
   console.log("singleRecipe1:", singleRecipe);
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  
+  const [Loading, setLoading] = useState(true);  
 
     useEffect(() => {
-    setIsLoading(true);
+    setLoading(true);
     getSingleRecipe(recipeId)
       .then((recipe) => {
         if (!recipe.success) {
           return setError("setError:", recipe.data);
         }
-        //    setTimeout(()=>{
+
         setSingleRecipe(recipe.data.recipe);
         console.log("recipe.data:", recipe.data);
-        // setIsLoading(false);
-        //    }, 2000); //2s to appear the recipe
       })
       .catch((message) => {
         setError(message);
       })
       .finally(() => {
-        setIsLoading(false);
+        setLoading(false);
       });
   }, [recipeId]);
 
@@ -43,6 +43,8 @@ function SingleRecipe() {
     return setForm({ ...form, [name]: value });
   }
 
+  //CREATE THE RATING COMPONENT
+//FIRST THE CONST
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   const [form, setForm] = useState({
@@ -50,12 +52,13 @@ function SingleRecipe() {
     comment: "",
   });
   const { userRating, comment, } = form;
-  
+
+  //IN THE SUBMIT EVENT WE PUT THE RATING FUNCTION  
   function handleSubmit(event) {
     event.preventDefault();
-    setIsLoading(true);
+    setLoading(true);
     setError(false);
-
+//THIS FUNCTION COMES FROM THE RECIPE SERVICE
   createRating({ userRating, comment, recipeId}).then(
     (res) => {
       console.log("RES:", res);
@@ -66,7 +69,26 @@ function SingleRecipe() {
     }
   );
   }
-  if (isLoading) {
+
+   // It comes from RecipeService
+   function handleDeleteSingleRecipe() {
+    setLoading(true);
+    deleteSingleRecipe(recipeId)
+      .then((response) => {
+        if (!response.success) {
+          return setError(response.data);
+        }
+        navigate(PATHS.HOME_PAGE);
+      })
+      .catch((message) => {
+        setError(message);
+      })
+      .finally(() => {
+       setLoading(false);
+       });
+  }
+  
+  if (Loading) {
     return <div>Loading...</div>;
   }
 
@@ -88,6 +110,9 @@ function SingleRecipe() {
             ))}
           </ol>
         </Card.Body>
+      <button onClick={handleDeleteSingleRecipe} type="delete">
+        Delete Recipe
+      </button>
 
       <Form onSubmit={handleSubmit}>
         <fieldset>

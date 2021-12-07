@@ -1,10 +1,4 @@
-import {
-  Form,
-  Container,
-  Row,
-  Col,
-  Button,
-} from "react-bootstrap";
+import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import LoadingComponent from "../../components/Loading/index";
@@ -16,7 +10,7 @@ function CreateRecipe() {
   const [form, setForm] = useState({
     title: "",
     category: "",
-    ingredients:"",
+    ingredients: "",
     cookingTime: "",
     stepsRecipe: "",
   });
@@ -63,15 +57,13 @@ function CreateRecipe() {
 
     // formBody.append("juanPostPic", chosenPicture);
 
-    createRecipe({ title, category, ingredients, stepsRecipe}).then(
-      (res) => {
-        console.log("RES:", res);
-        if (!res.success) {
-          return setError(res.data);
-        }
-        navigate(PATHS.HOME_PAGE);
+    createRecipe({ title, category, ingredients, stepsRecipe }).then((res) => {
+      console.log("RES:", res);
+      if (!res.success) {
+        return setError(res.data);
       }
-    );
+      navigate(PATHS.HOME_PAGE);
+    });
   }
 
   if (isLoading) {
@@ -106,7 +98,7 @@ function CreateRecipe() {
               {/* </Col> */}
               <Form.Group as={Col}>
                 <Form.Label>
-                  Category of your recipe: 
+                  Category of your recipe:
                   <Form.Control
                     value={category}
                     onChange={handleNormalInput}
@@ -117,29 +109,29 @@ function CreateRecipe() {
                 </Form.Label>
               </Form.Group>
             </Row>
-            
+
             <Form.Group className="mb-3">
               <Form.Label>Ingredients of your recipe*:</Form.Label>
               <Form.Control
-                    value={ingredients}
-                    onChange={handleNormalInput}
-                    type="text"
-                    placeholder="butter, beef, carrot,..."
-                    name="ingredients"/>
+                value={ingredients}
+                onChange={handleNormalInput}
+                type="text"
+                placeholder="butter, beef, carrot,..."
+                name="ingredients"
+              />
             </Form.Group>
 
-            
-
             <Form.Group className="mb-3">
-                <Form.Label>Steps of your recipe*:</Form.Label>
-                  <Form.Control
-                    value={stepsRecipe}
-                    onChange={handleNormalInput}
-                    type="text"
-                    placeholder="First, you need to boil the carrots"
-                    name="stepsRecipe"/>
-              </Form.Group>
-              <Button type="submit">Submit</Button>
+              <Form.Label>Steps of your recipe*:</Form.Label>
+              <Form.Control
+                value={stepsRecipe}
+                onChange={handleNormalInput}
+                type="text"
+                placeholder="First, you need to boil the carrots"
+                name="stepsRecipe"
+              />
+            </Form.Group>
+            <Button type="submit">Submit</Button>
           </fieldset>
         </Form>
       </Container>

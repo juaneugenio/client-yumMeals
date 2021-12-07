@@ -101,6 +101,18 @@
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
 }
+<<<<<<< HEAD
+.button-login:hover {
+  background: linear-gradient(to right, #1845ad, #f88b61);
+}
+=======
+<<<<<<< HEAD
+.button-login:hover {
+  background: linear-gradient(to right, #1845ad, #f88b61);
+}
+=======
+>>>>>>> dev
+>>>>>>> anna
 .error-block p {
   text-align: justify;
   font-size: 20px;
