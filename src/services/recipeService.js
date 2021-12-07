@@ -47,3 +47,7 @@ export function deleteSingleRecipe(id) {
     .then(onSuccess("deleted-recipe"))
     .catch(onError("deleted-recipe"));
 }
+
+// Funtion to edit/update a singleRecipe and to be used in the SingleRecipe.page
+
+export function updateSingleRecipe() {}
