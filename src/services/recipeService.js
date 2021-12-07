@@ -10,7 +10,7 @@ const recipeService = axios.create({
 //we use a promise to get all the recipes and we will send it to singleRecipe.page
 export function getRecipes() {
   const authorization = getUserToken();
-  console.log("authorization:", authorization);
+
   return recipeService
     .get("/", {
       headers: {
@@ -33,4 +33,17 @@ export function createRecipe(formBody) {
     .post("/create", formBody, sendUser())
     .then(onSuccess("create-recipe"))
     .catch(onError(formBody));
+}
+// Function to delete a single recipe and to be used in the SingleRecipe.page.
+export function deleteSingleRecipe(id) {
+  const authorization = getUserToken();
+  console.log("authorization:", authorization);
+  return recipeService
+    .delete(`/${id}`, {
+      headers: {
+        authorization: getUserToken(),
+      },
+    })
+    .then(onSuccess("deleted-recipe"))
+    .catch(onError("deleted-recipe"));
 }
