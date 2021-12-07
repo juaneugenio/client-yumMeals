@@ -9,7 +9,7 @@ const recipeService = axios.create({
 
 //we use a promise to get all the recipes and we will send it to singleRecipe.page
 export function getRecipes() {
-  const authorization = getUserToken();
+  // const authorization = getUserToken();
 
   return recipeService
     .get("/", {

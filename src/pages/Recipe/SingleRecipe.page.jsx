@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import LoadingComponent from "../../components/Loading/index";
 import { useParams, useNavigate } from "react-router";
 import {
