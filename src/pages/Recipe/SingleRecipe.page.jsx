@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container } from "react-bootstrap";
+import { Card, Container, Button } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import LoadingComponent from "../../components/Loading/index";
 import { useParams, useNavigate } from "react-router";
 import {
   getSingleRecipe,
   deleteSingleRecipe,
+  updateSingleRecipe,
 } from "../../services/recipeService";
 import * as PATHS from "../../utils/paths";
 
@@ -24,7 +25,6 @@ function SingleRecipe() {
         if (!recipe.success) {
           return setError("setError:", recipe.data);
         }
-
         setSingleRecipe(recipe.data.recipe);
         console.log("recipe.data:", recipe.data);
       })
@@ -40,6 +40,25 @@ function SingleRecipe() {
   function handleDeleteSingleRecipe() {
     setLoading(true);
     deleteSingleRecipe(recipeId)
+      .then((response) => {
+        if (!response.success) {
+          return setError(response.data);
+        }
+      })
+      .catch((message) => {
+        setError(message);
+      })
+      .finally(() => {
+        if (error) {
+          return setLoading(false);
+        }
+        navigate(PATHS.HOME_PAGE);
+      });
+  }
+
+  function handleUpdateRecipe() {
+    setLoading(true);
+    updateSingleRecipe(recipeId)
       .then((response) => {
         if (!response.success) {
           return setError(response.data);
@@ -77,11 +96,20 @@ function SingleRecipe() {
               <li className="list-group-item">{step}</li>
             ))}
           </ol>
+          <div className="d-flex mt-3 gap-2">
+            <Button variant="primary" onClick={handleUpdateRecipe}>
+              Edit Recipe
+            </Button>
+            <Button
+              variant="danger"
+              onClick={handleDeleteSingleRecipe}
+              type="delete"
+            >
+              Delete Recipe
+            </Button>
+          </div>
         </Card.Body>
       </Card>
-      <button onClick={handleDeleteSingleRecipe} type="delete">
-        Delete Recipe
-      </button>
     </Container>
   );
 }

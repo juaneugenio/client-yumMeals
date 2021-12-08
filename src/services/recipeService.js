@@ -48,6 +48,12 @@ export function deleteSingleRecipe(id) {
     .catch(onError("deleted-recipe"));
 }
 
-// Funtion to edit/update a singleRecipe and to be used in the SingleRecipe.page
+// Function to edit/update a singleRecipe and to be used in the SingleRecipe.page
 
-export function updateSingleRecipe() {}
+export function updateSingleRecipe(id, formBody) {
+  return recipeService
+
+    .put(`/${id}`, formBody, sendUser())
+    .then(onSuccess("updated-Recipe"))
+    .catch(onError("updated-Recipe"));
+}
