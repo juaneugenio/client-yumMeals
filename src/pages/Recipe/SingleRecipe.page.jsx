@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Card, Container, Form, Button} from "react-bootstrap";
-import LoadingComponent from "../../components/Loading/index";
 import { useParams, useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
 import {
