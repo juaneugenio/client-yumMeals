@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Profile(props) {
-  const { user, setUser } = props;
+export default function Profile({ user }) {
+  // const { user, setUser } = props;
   return (
     <div>
       <h1>{user.username}´s Profile</h1>
