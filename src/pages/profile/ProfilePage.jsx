@@ -14,7 +14,7 @@ export default function Profile({ user }) {
       <img
         height={"300px"}
         src={user.profileImage}
-        alt={"${user.username}'s Profile"}
+        alt={`${user.username}'s Profile`}
       />
       <p>
         <b>Username:</b> {user.username}

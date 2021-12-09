@@ -46,7 +46,7 @@ export default function UpdateProfile(props) {
       <img
         height={"300px"}
         src={user.profileImage}
-        alt={"${user.username}'s Profile"}
+        alt={`${user.username}'s Profile`}
       />
       {error && <p style={{ color: "teal", fontWeight: "530" }}>{error}</p>}
       <form onSubmit={handleFromSubmit} method="POST">
