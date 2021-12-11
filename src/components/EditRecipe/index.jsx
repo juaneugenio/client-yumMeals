@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import { updateSingleRecipe } from "../../services/recipeService";
 import { useNavigate } from "react-router";
@@ -11,7 +11,7 @@ function EditRecipe({ recipe }) {
   const [form, setForm] = useState(recipe);
   const { title, category, ingredients, stepsRecipe, cookingTime } = form;
   console.log("MARIEEEEEEEEEE", form);
-  const [isLoading, setIsLoading] = useState(false);
+  //   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   function handleNormalInput(event) {
@@ -22,7 +22,7 @@ function EditRecipe({ recipe }) {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    setIsLoading(true);
+    //  setIsLoading(true);
     setError(false);
 
     const formBody = new FormData();

@@ -114,21 +114,18 @@ function SingleRecipe({ user }) {
                 <li className="list-group-item">{step}</li>
               ))}
             </ol>
-
-            {isOwner() && (
-              <div className="d-flex mt-3 gap-2">
-                <Link key={singleRecipe._id} to={`/recipe/edit/${recipeId}`}>
-                  <Button variant="primary">Edit Recipe</Button>
-                </Link>
-                <Button variant="danger" onClick={handleDeleteSingleRecipe} type="delete">
-                  Delete Recipe
-                </Button>
-              </div>
-            )}
           </Card.Body>
-          <button onClick={handleDeleteSingleRecipe} type="delete">
-            Delete Recipe
-          </button>
+
+          {isOwner() && (
+            <div className="d-flex mt-3 gap-2">
+              <Link key={singleRecipe._id} to={`/recipe/edit/${recipeId}`}>
+                <Button variant="primary">Edit Recipe</Button>
+              </Link>
+              <Button variant="danger" onClick={handleDeleteSingleRecipe} type="delete">
+                Delete Recipe
+              </Button>
+            </div>
+          )}
 
           <Form onSubmit={handleSubmit}>
             <fieldset>
