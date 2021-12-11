@@ -44,7 +44,7 @@ function CreateRecipe() {
 
     // if (!chosenPicture) {
     //   setError("You must select a picture to upload! You fool! 👀");
-    //   setIsLoading(false);
+    //   setIsIsLoading(false);
     //   return;
     // }
 
@@ -131,6 +131,7 @@ function CreateRecipe() {
                 name="stepsRecipe"
               />
             </Form.Group>
+
             <Button type="submit">Submit</Button>
           </fieldset>
         </Form>
