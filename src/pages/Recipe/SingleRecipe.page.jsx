@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { Card, Container, Form, Button} from "react-bootstrap";
 import { useParams, useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
@@ -9,34 +10,50 @@ import {
 import "../Recipe/SingleRecipePage.css";
 import { FaStar } from "react-icons/fa";
 import { createRating } from "../../services/recipeService";
+=======
+import { Card, Container, Button } from "react-bootstrap";
+// import { Link } from "react-router-dom";
+import IsLoadingComponent from "../../components/Loading/index";
+import { useParams, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import { getSingleRecipe, deleteSingleRecipe } from "../../services/recipeService";
+import * as PATHS from "../../utils/paths";
+>>>>>>> juan
 
 function SingleRecipe() {
   const { recipeId } = useParams();
   const navigate = useNavigate();
   const [singleRecipe, setSingleRecipe] = useState(undefined);
-  console.log("singleRecipe1:", singleRecipe);
+  // console.log("singleRecipe1:", singleRecipe);
   const [error, setError] = useState("");
+<<<<<<< HEAD
   const [Loading, setLoading] = useState(true);  
 
     useEffect(() => {
     setLoading(true);
+=======
+  const [IsLoading, setIsIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsIsLoading(true);
+>>>>>>> juan
     getSingleRecipe(recipeId)
       .then((recipe) => {
         if (!recipe.success) {
           return setError("setError:", recipe.data);
         }
-
         setSingleRecipe(recipe.data.recipe);
-        console.log("recipe.data:", recipe.data);
+        // console.log("recipe.data:", recipe.data);
       })
       .catch((message) => {
         setError(message);
       })
       .finally(() => {
-        setLoading(false);
+        setIsIsLoading(false);
       });
   }, [recipeId]);
 
+<<<<<<< HEAD
   function handleNormalInput(event) {
     const { name, value } = event.target;
     return setForm({ ...form, [name]: value });
@@ -72,6 +89,11 @@ function SingleRecipe() {
    // It comes from RecipeService
    function handleDeleteSingleRecipe() {
     setLoading(true);
+=======
+  // It comes from RecipeService
+  function handleDeleteSingleRecipe() {
+    setIsIsLoading(true);
+>>>>>>> juan
     deleteSingleRecipe(recipeId)
       .then((response) => {
         if (!response.success) {
@@ -83,12 +105,24 @@ function SingleRecipe() {
         setError(message);
       })
       .finally(() => {
+<<<<<<< HEAD
        setLoading(false);
        });
   }
   
   if (Loading) {
     return <div>Loading...</div>;
+=======
+        if (error) {
+          return setIsIsLoading(false);
+        }
+        navigate(PATHS.HOME_PAGE);
+      });
+  }
+
+  if (IsLoading) {
+    return <IsLoadingComponent />;
+>>>>>>> juan
   }
 
   if (error) {
@@ -108,7 +142,16 @@ function SingleRecipe() {
               <li className="list-group-item">{step}</li>
             ))}
           </ol>
+          <div className="d-flex mt-3 gap-2">
+            <Link to={PATHS.EDIT_RECIPE_PAGE}>
+              <Button variant="primary">Edit Recipe</Button>
+            </Link>
+            <Button variant="danger" onClick={handleDeleteSingleRecipe} type="delete">
+              Delete Recipe
+            </Button>
+          </div>
         </Card.Body>
+<<<<<<< HEAD
       <button onClick={handleDeleteSingleRecipe} type="delete">
         Delete Recipe
       </button>
@@ -156,6 +199,8 @@ function SingleRecipe() {
           <Button type="submit">Submit</Button>
         </fieldset>
       </Form>
+=======
+>>>>>>> juan
       </Card>
     </Container>
   );

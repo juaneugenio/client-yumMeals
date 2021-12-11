@@ -4,6 +4,7 @@ import Profile from "../pages/profile/ProfilePage";
 import Login from "../pages/LogIn";
 import Signup from "../pages/Signup";
 import ProtectedPage from "../pages/ProtectedPage";
+import EditRecipe from "../pages/Recipe/EditRecipe";
 import * as PATHS from "../utils/paths";
 import SingleRecipe from "../pages/Recipe/SingleRecipe.page";
 import CreateRecipe from "../pages/Recipe/CreateRecipe";
@@ -40,11 +41,7 @@ const routes = (props) => {
     },
     {
       path: PATHS.CURRENT_USER_PROFILE,
-      element: user ? (
-        <Profile {...props} />
-      ) : (
-        <Navigate to={PATHS.LOGIN_PAGE} replace />
-      ),
+      element: user ? <Profile {...props} /> : <Navigate to={PATHS.LOGIN_PAGE} replace />,
     },
     {
       path: PATHS.EDIT_PROFILE_PAGE,
@@ -58,6 +55,14 @@ const routes = (props) => {
       path: PATHS.PROTECTEDPAGE,
       element: user ? (
         <ProtectedPage {...props} />
+      ) : (
+        <Navigate to={PATHS.LOGIN_PAGE} replace />
+      ),
+    },
+    {
+      path: PATHS.EDIT_RECIPE_PAGE,
+      element: user ? (
+        <EditRecipe {...props} />
       ) : (
         <Navigate to={PATHS.LOGIN_PAGE} replace />
       ),

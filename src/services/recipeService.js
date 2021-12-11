@@ -21,14 +21,20 @@ export function getRecipes() {
     .catch(onError("getRecipes"));
 }
 
-export function getSingleRecipe(id) {
+export function getSingleRecipe(recipeId) {
   return recipeService
-    .get(`/${id}`)
+    .get(`/${recipeId}`)
     .then(onSuccess("getSingleRecipe"))
-    .catch(onError(id));
+    .catch(onError(recipeId));
 }
+// export function getRecipeEdit(recipeId) {
+//   return recipeService
+//     .get(`/${recipeId}`)
+//     .then(onSuccess("getRecipeEdit"))
+//     .catch(onError(recipeId));
+// }
 export function createRecipe(formBody) {
-  console.log(`body`, { formBody });
+  console.log(`Recipe created 👇`, formBody);
   return recipeService
     .post("/create", formBody, sendUser())
     .then(onSuccess("create-recipe"))
@@ -36,8 +42,8 @@ export function createRecipe(formBody) {
 }
 // Function to delete a single recipe and to be used in the SingleRecipe.page.
 export function deleteSingleRecipe(id) {
-  const authorization = getUserToken();
-  console.log("authorization:", authorization);
+  // const authorization = getUserToken();
+  console.log("This recipe succesful deleted 👉:", id);
   return recipeService
     .delete(`/${id}`, {
       headers: {
@@ -48,6 +54,7 @@ export function deleteSingleRecipe(id) {
     .catch(onError("deleted-recipe"));
 }
 
+<<<<<<< HEAD
 export function createRating(formBody) {
   console.log(`body`, { formBody });
   return recipeService
@@ -56,5 +63,26 @@ export function createRating(formBody) {
     .catch(onError(formBody));
 }
 // Funtion to edit/update a singleRecipe and to be used in the SingleRecipe.page
+=======
+// Function to edit/update a singleRecipe and to be used in the SingleRecipe.page
 
-export function updateSingleRecipe() {}
+export function updateSingleRecipe(recipeId, formBody) {
+  console.log("------>", { formBody });
+  return recipeService
+    .put(`/${recipeId}`, formBody, sendUser(), {
+      headers: {
+        authorization: getUserToken(),
+      },
+    })
+    .then(onSuccess("updated-recipe"))
+    .catch(onError("updated-recipe"));
+}
+>>>>>>> juan
+
+// export function updateSingleRecipe(id, formBody) {
+//   console.log("Mira el cuerpo de la form->", { formBody });
+//   return recipeService
+//     .patch(`/${id}/edit`, formBody, sendUser())
+//     .then(onSuccess("update-recipe"))
+//     .catch(onError("formBody"));
+// }
