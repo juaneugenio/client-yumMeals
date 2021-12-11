@@ -10,7 +10,7 @@ import { createRating } from "../../services/recipeService";
 // import { Link } from "react-router-dom";
 import IsLoadingComponent from "../../components/Loading/index";
 import { Link } from "react-router-dom";
-import { getSingleRecipe, deleteSingleRecipe } from "../../services/recipeService";
+
 import EditRecipe from "../../components/EditRecipe";
 
 function SingleRecipe({ user }) {
