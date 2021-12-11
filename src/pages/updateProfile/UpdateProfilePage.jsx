@@ -16,7 +16,7 @@ export default function UpdateProfile(props) {
       setError("Don't forget to choose your profile image!");
       return;
     }
-    //lets create a new form body because we are uploading files.
+    //lets create a new form body because we are upIsLoading files.
     //FormData: It provides a way to easily construct a set of key/value representing the form fields and their values
     const formBody = new window.FormData();
     formBody.append("profileImage", chosenPicture); //profileImage  comes from index router.post
@@ -43,11 +43,7 @@ export default function UpdateProfile(props) {
   return (
     <div>
       <h1>Update {user.username}´s Profile</h1>
-      <img
-        height={"300px"}
-        src={user.profileImage}
-        alt={`${user.username}'s Profile`}
-      />
+      <img height={"300px"} src={user.profileImage} alt={`${user.username}'s Profile`} />
       {error && <p style={{ color: "teal", fontWeight: "530" }}>{error}</p>}
       <form onSubmit={handleFromSubmit} method="POST">
         <input key={inputKey} type="file" onChange={handleInputChange} />
