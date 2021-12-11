@@ -6,14 +6,18 @@ import { useParams, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { getSingleRecipe, deleteSingleRecipe } from "../../services/recipeService";
 import * as PATHS from "../../utils/paths";
+import EditRecipe from "../../components/EditRecipe";
 
-function SingleRecipe() {
+function SingleRecipe({ user }) {
+  console.log("-----> ", user);
   const navigate = useNavigate();
   const { recipeId } = useParams();
   const [singleRecipe, setSingleRecipe] = useState(undefined);
   // console.log("singleRecipe1:", singleRecipe);
   const [error, setError] = useState("");
   const [IsLoading, setIsIsLoading] = useState(true);
+  const isLoggedIn = () => Boolean(user);
+  const isOwner = () => isLoggedIn() && user._id === singleRecipe?.owner._id;
 
   useEffect(() => {
     setIsIsLoading(true);
@@ -74,16 +78,21 @@ function SingleRecipe() {
               <li className="list-group-item">{step}</li>
             ))}
           </ol>
-          <div className="d-flex mt-3 gap-2">
-            <Link to={PATHS.EDIT_RECIPE_PAGE}>
-              <Button variant="primary">Edit Recipe</Button>
-            </Link>
-            <Button variant="danger" onClick={handleDeleteSingleRecipe} type="delete">
-              Delete Recipe
-            </Button>
-          </div>
+
+          {isOwner() && (
+            <div className="d-flex mt-3 gap-2">
+              <Link key={singleRecipe._id} to={`/recipe/edit/${recipeId}`}>
+                <Button variant="primary">Edit Recipe</Button>
+              </Link>
+              <Button variant="danger" onClick={handleDeleteSingleRecipe} type="delete">
+                Delete Recipe
+              </Button>
+            </div>
+          )}
         </Card.Body>
       </Card>
+
+      {isOwner() && <EditRecipe recipe={singleRecipe} />}
     </Container>
   );
 }
