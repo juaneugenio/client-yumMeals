@@ -8,7 +8,7 @@ import { FaStar } from "react-icons/fa";
 import { createRating } from "../../services/recipeService";
 
 // import { Link } from "react-router-dom";
-import IsLoadingComponent from "../../components/Loading/index";
+import LoadingComponent from "../../components/Loading/index";
 import { Link } from "react-router-dom";
 
 import EditRecipe from "../../components/EditRecipe";
@@ -60,7 +60,7 @@ function SingleRecipe({ user }) {
   //IN THE SUBMIT EVENT WE PUT THE RATING FUNCTION
   function handleSubmit(event) {
     event.preventDefault();
-    setLoading(true);
+    setIsLoading(true);
     setError(false);
     //THIS FUNCTION COMES FROM THE RECIPE SERVICE
     createRating({ userRating, comment, recipeId }).then((res) => {
@@ -94,7 +94,7 @@ function SingleRecipe({ user }) {
       });
 
     if (isLoading) {
-      return <IsLoadingComponent />;
+      return <LoadingComponent />;
     }
 
     if (error) {
