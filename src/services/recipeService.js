@@ -54,7 +54,6 @@ export function deleteSingleRecipe(id) {
     .catch(onError("deleted-recipe"));
 }
 
-<<<<<<< HEAD
 export function createRating(formBody) {
   console.log(`body`, { formBody });
   return recipeService
@@ -63,7 +62,6 @@ export function createRating(formBody) {
     .catch(onError(formBody));
 }
 // Funtion to edit/update a singleRecipe and to be used in the SingleRecipe.page
-=======
 // Function to edit/update a singleRecipe and to be used in the SingleRecipe.page
 
 export function updateSingleRecipe(recipeId, formBody) {
@@ -77,7 +75,6 @@ export function updateSingleRecipe(recipeId, formBody) {
     .then(onSuccess("updated-recipe"))
     .catch(onError("updated-recipe"));
 }
->>>>>>> juan
 
 // export function updateSingleRecipe(id, formBody) {
 //   console.log("Mira el cuerpo de la form->", { formBody });
