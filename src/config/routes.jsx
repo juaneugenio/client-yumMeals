@@ -30,6 +30,8 @@ const routes = (props) => {
       path: PATHS.SINGLE_RECIPE_PAGE,
       element: <SingleRecipe {...props} />,
     },
+
+    //////////PROTECTED PATHS/////////////////////////////////////////////////
     {
       path: PATHS.CREATE_RECIPE_PAGE,
       element: user ? (

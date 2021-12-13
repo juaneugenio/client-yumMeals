@@ -21,13 +21,15 @@ function HomePage() {
 		  if (!dbRecipes.success) {
 			return console.log(dbRecipes.data);
 		  }
-		  console.log(dbRecipes);
+		  console.log("Allrecipes:", dbRecipes);
 		  setRecipes(dbRecipes.data.recipes);
 		});
 	  }, []);
 
-	return (<div>
+	return (<div className="container-fluid">
 		{recipes.map((recipe) => (
+			<div className="row-sm-3">
+			<div className="col-sm-3" key={recipe._id}>
 				<Card  className="p-3" style={{ width: '18rem' }}>
 				<Card.Img variant="top" src={recipe.image} alt={recipe.title} />
 					<Card.Body>
@@ -42,6 +44,8 @@ function HomePage() {
 				))}</ol> */}
 				</Card.Body>
 				</Card>
+				</div>
+				</div>
 		))}
 	</div>
 	);

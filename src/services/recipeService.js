@@ -21,12 +21,22 @@ export function getRecipes() {
     .catch(onError("getRecipes"));
 }
 
-export function getSingleRecipe(id) {
+export function getSearchRecipes(search) {
   return recipeService
-    .get(`/${id}`)
-    .then(onSuccess("getSingleRecipe"))
-    .catch(onError(id));
+    .get(`/${search}`)
+    .then(onSuccess("getSearchRecipes"))
+    .catch(onError(search));
 }
+
+export function getSingleRecipe(recipeId) {
+  const authorization = getUserToken();
+  console.log("authorization:", authorization);
+  return recipeService
+    .get(`/${recipeId}`, sendUser())
+    .then(onSuccess("getSingleRecipe"))
+    .catch(onError(recipeId));
+}
+
 export function createRecipe(formBody) {
   console.log(`body`, { formBody });
   return recipeService
@@ -48,12 +58,12 @@ export function deleteSingleRecipe(id) {
     .catch(onError("deleted-recipe"));
 }
 
-export function createRating(formBody) {
-  console.log(`body`, { formBody });
+export function createRating(formRate) {
+  console.log(`body`, { formRate });
   return recipeService
-    .post("/comment", formBody, sendUser())
+    .post("/comment", formRate, sendUser())
     .then(onSuccess("create-rating"))
-    .catch(onError(formBody));
+    .catch(onError(formRate));
 }
 // Funtion to edit/update a singleRecipe and to be used in the SingleRecipe.page
 

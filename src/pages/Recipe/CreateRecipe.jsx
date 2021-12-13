@@ -15,10 +15,10 @@ function CreateRecipe() {
     stepsRecipe: "",
   });
   // console.log("FORM:", form);
-  const { title, category, ingredients, stepsRecipe } = form;
+  const { title, category, ingredients, stepsRecipe, cookingTime } = form;
 
   // const [chosenPicture, setChosenPicture] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [Loading, SetIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   // function handleFileInput(event) {
@@ -39,12 +39,12 @@ function CreateRecipe() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setIsLoading(true);
+    SetIsLoading(true);
     setError(false);
 
     // if (!chosenPicture) {
     //   setError("You must select a picture to upload! You fool! 👀");
-    //   setIsLoading(false);
+    //   setLoading(false);
     //   return;
     // }
 
@@ -53,6 +53,7 @@ function CreateRecipe() {
     formBody.append("category", category);
     formBody.append("ingredients", ingredients);
     formBody.append("stepsRecipe", stepsRecipe);
+    formBody.append("cookingTime", cookingTime);
     // console.log(`formBody`, formBody);
 
     // formBody.append("juanPostPic", chosenPicture);
@@ -66,7 +67,7 @@ function CreateRecipe() {
     });
   }
 
-  if (isLoading) {
+  if (Loading) {
     return <LoadingComponent />;
   }
 
@@ -129,6 +130,17 @@ function CreateRecipe() {
                 type="text"
                 placeholder="First, you need to boil the carrots"
                 name="stepsRecipe"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Cooking Time*:</Form.Label>
+              <Form.Control
+                value={cookingTime}
+                onChange={handleNormalInput}
+                type="text"
+                placeholder="20mn"
+                name="cookingTime"
               />
             </Form.Group>
             <Button type="submit">Submit</Button>

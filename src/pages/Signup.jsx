@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { signup } from "../services/auth";
+import { signup } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
 import "./auth.css";
-import * as PATHS from "../utils/paths";
-import * as USER_HELPERS from "../utils/userToken";
+import * as PATHS from "../../utils/paths";
+import * as USER_HELPERS from "../../utils/userToken";
 
 export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
