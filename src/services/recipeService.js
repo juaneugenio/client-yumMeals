@@ -21,16 +21,7 @@ export function getRecipes() {
     .catch(onError("getRecipes"));
 }
 
-export function getSearchRecipes(search) {
-  return recipeService
-    .get(`/${search}`)
-    .then(onSuccess("getSearchRecipes"))
-    .catch(onError(search));
-}
-
 export function getSingleRecipe(recipeId) {
-  const authorization = getUserToken();
-  console.log("authorization:", authorization);
   return recipeService
     .get(`/${recipeId}`, sendUser())
     .then(onSuccess("getSingleRecipe"))
@@ -38,7 +29,7 @@ export function getSingleRecipe(recipeId) {
 }
 
 export function createRecipe(formBody) {
-  console.log(`body`, { formBody });
+  console.log(`Recipe created 👇`, formBody);
   return recipeService
     .post("/create", formBody, sendUser())
     .then(onSuccess("create-recipe"))
@@ -46,8 +37,8 @@ export function createRecipe(formBody) {
 }
 // Function to delete a single recipe and to be used in the SingleRecipe.page.
 export function deleteSingleRecipe(id) {
-  const authorization = getUserToken();
-  console.log("authorization:", authorization);
+  // const authorization = getUserToken();
+  console.log("This recipe succesful deleted 👉:", id);
   return recipeService
     .delete(`/${id}`, {
       headers: {
@@ -65,6 +56,12 @@ export function createRating(formRate) {
     .then(onSuccess("create-rating"))
     .catch(onError(formRate));
 }
-// Funtion to edit/update a singleRecipe and to be used in the SingleRecipe.page
 
-export function updateSingleRecipe() {}
+// Function to edit/update a singleRecipe and to be used in the SingleRecipe.page
+export function updateSingleRecipe(recipeId, formBody) {
+  console.log("------>", formBody);
+  return recipeService
+    .put(`/edit/${recipeId}`, formBody, sendUser())
+    .then(onSuccess("updated-recipe"))
+    .catch(onError("updated-recipe"));
+}
