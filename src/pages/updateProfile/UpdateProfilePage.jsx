@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { updateProfileImage } from "../../services/userService";
+import { useNavigate } from "react-router-dom";
+import { updateProfileImage, deleteUser } from "../../services/userService";
+import * as PATHS from "../../utils/paths";
 
 export default function UpdateProfile(props) {
   const { user, setUser } = props;
   const [chosenPicture, setChosenPicture] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const [inputKey, setInputKey] = useState("");
 
   //First thing we always do before creating a form is prevent the default behaviour
@@ -40,15 +44,46 @@ export default function UpdateProfile(props) {
     setChosenPicture(imageFromInput);
   }
 
+  // DELETE HANDLING
+
+  function handleDeleteUser(event) {
+    event.preventDefault();
+    setIsLoading(true);
+    deleteUser(user._id)
+      .then((res) => {
+        if (!res.success) {
+          return setError(res.data);
+        }
+        setUser(null);
+      })
+      .finally(() => {
+        if (error) {
+          return setIsLoading(false);
+        }
+        navigate(PATHS.HOME_PAGE);
+      });
+  }
+
   return (
     <div>
       <h1>Update {user.username}´s Profile</h1>
-      <img height={"300px"} src={user.profileImage} alt={`${user.username}'s Profile`} />
+      <img
+        height={"300px"}
+        src={
+          isLoading
+            ? "https://ak.picdn.net/shutterstock/videos/1039407446/thumb/1.jpg"
+            : user.profileImage
+        }
+        alt={`${user.username}'s Profile`}
+      />
       {error && <p style={{ color: "teal", fontWeight: "530" }}>{error}</p>}
       <form onSubmit={handleFromSubmit} method="POST">
         <input key={inputKey} type="file" onChange={handleInputChange} />
         <button type="submit">Upload Image</button>
       </form>
+      <button onClick={handleDeleteUser} type="delete">
+        Delete Account
+      </button>
     </div>
   );
 }
