@@ -49,10 +49,10 @@ export function deleteSingleRecipe(id) {
     .catch(onError("deleted-recipe"));
 }
 
-export function createRating(formRate) {
+export function createRating(formRate, recipeId) {
   console.log(`body`, { formRate });
   return recipeService
-    .post("/comment", formRate, sendUser())
+    .post("/comment", { ...formRate, recipeId }, sendUser())
     .then(onSuccess("create-rating"))
     .catch(onError(formRate));
 }

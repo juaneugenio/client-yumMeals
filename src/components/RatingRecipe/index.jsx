@@ -56,6 +56,7 @@ function RatingRecipe({ recipe }) {
       if (!res.success) {
         return setError(res.data);
       }
+      console.log("recipe._id", recipe._id);
       navigate(PATHS.HOME_PAGE);
     });
   }
