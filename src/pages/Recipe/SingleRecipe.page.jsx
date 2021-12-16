@@ -24,14 +24,21 @@ function SingleRecipe({ user }) {
   const [isLoading, setIsLoading] = useState(true);
   const isLoggedIn = () => Boolean(user);
   const isOwner = () => isLoggedIn() && user._id === singleRecipe?.owner._id;
+  const recIsRated = () => Boolean(recipeIsRated);
+  const isRated = () => isLoggedIn(true) && recIsRated(true);
 
   const navigate = useNavigate();
   const [allRatings, setAllRatings] = useState(undefined);
+  const [recipeIsRated, setRecipeIsRated] = useState(undefined);
+  console.log("///***isRated:", isRated());
+  console.log("///***recIsRated:", recIsRated());
 
   useEffect(() => {
     setIsLoading(true);
     getSingleRecipe(recipeId)
       .then((recipe) => {
+        console.log("///***recIsRated:", recIsRated());
+        console.log("///***isRated:", isRated());
         console.log("recipeId:", recipeId);
         console.log("response.date:", recipe.data);
         if (!recipe.success) {
@@ -39,9 +46,16 @@ function SingleRecipe({ user }) {
         }
         setSingleRecipe(recipe.data.recipe);
         setAllRatings(recipe.data.rating);
+        setRecipeIsRated(recipe.data.recipeIsRated);
 
-        console.log("recipe.data.recipe:", recipe.data.recipe);
-        console.log("recipe.data.rating:", recipe.data.rating);
+        console.log("*****recipe.data.recipe:", recipe.data.recipe);
+        console.log("*****recipe.data.rating:", recipe.data.rating);
+        console.log(
+          "*****recipe.data.recipeIsRated:",
+          recipe.data.recipeIsRated
+        );
+        console.log("///***recIsRated:", recIsRated());
+        console.log("///***isRated:", isRated());
       })
       .catch((message) => {
         setError(message);
@@ -108,14 +122,18 @@ function SingleRecipe({ user }) {
         </Card.Body>
       </Card>
       {/* ///////////////////////////////////CREATE RATING/////////////////////////////////////////////// */}
-      <p>
-        <strong>
-          If you want to rate and comment this recipe, you need to create an
-          account
-        </strong>
-      </p>
-      {user && <RatingRecipe recipe={singleRecipe} />}
-      {user && <DisplayUserRating recipeId={singleRecipe._id} />}
+      {user && (
+        <p>
+          <strong>
+            If you want to rate and comment this recipe, you need to create an
+            account
+          </strong>
+        </p>
+      )}
+      {isLoggedIn() ||
+        !isRated() ||
+        (isOwner() && <RatingRecipe recipe={singleRecipe} />)}
+      {user && <DisplayUserRating recipe={singleRecipe} />}
       {/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
       <DisplayRatings ratings={allRatings} />
       {/*////////////////////////////EDIT AND DELETE////////////////////////////////////  */}

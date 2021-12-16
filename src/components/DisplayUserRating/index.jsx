@@ -3,20 +3,27 @@ import { FaStar } from "react-icons/fa";
 import { Form, Card } from "react-bootstrap";
 import { UserRecipeRating } from "../../services/recipeService";
 
-function DisplayUserRatings(recipeId) {
-  const [userRating, setUserRating] = useState(null);
+function DisplayUserRatings({ recipe }) {
+  const [userRating, setUserRating] = useState();
+  const [userComment, setUserComment] = useState();
   const [isLoading, setIsLoading] = useState();
   const [error, setError] = useState(null);
-  console.log("DisplayUserRatings recipeId:", recipeId);
+  console.log("DisplayUserRatings recipeId:", recipe);
 
   useEffect(() => {
     setIsLoading(true);
-    UserRecipeRating(recipeId)
+    UserRecipeRating(recipe._id)
       .then((response) => {
+        console.log("RESPONSE DATA:", response.data);
+        console.log(
+          "RESPONSE DATA.oneRating.rating:",
+          response.data.oneRating[0].rating
+        );
         if (!response.success) {
           return setError("setError:", response.data);
         }
-        setUserRating(response.data);
+        setUserRating(response.data.oneRating[0]?.rating);
+        setUserComment(response.data.oneRating[0]?.comment);
       })
       .catch((message) => {
         setError(message);
@@ -24,7 +31,7 @@ function DisplayUserRatings(recipeId) {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [recipeId]);
+  }, [recipe._id]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -36,32 +43,35 @@ function DisplayUserRatings(recipeId) {
 
   return (
     <div>
-      {/* {/* <legend>All Ratings & Comments</legend> */}
+      <legend>Your Rating & Comment </legend>
       <div className="row-sm-3">
         <div className="col-sm-3">
           <Card>
-            <Card.Title>by {}</Card.Title>
             <Card.Body>
               <Form>
                 <Form.Group>
                   {[...Array(5)].map((star, i) => {
                     const ratingValue = i + 1;
-                    {
-                      /* let rating = oneRating.rating; */
-                    }
 
                     return (
                       <Form.Label>
-                        <input type="radio" readOnly name="Rating" value="" />
+                        <input
+                          type="radio"
+                          readOnly
+                          name="userRating"
+                          value={userRating}
+                        />
                         <FaStar
                           className="star"
-                          // color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"}
+                          color={
+                            ratingValue <= userRating ? "#ffc107" : "#e4e5e9"
+                          }
                           size={20}
                         />
                       </Form.Label>
                     );
                   })}
-                  <Card.Text className="h3">Comment</Card.Text>
+                  <Card.Text className="h3">{userComment}</Card.Text>
                 </Form.Group>
               </Form>
             </Card.Body>
