@@ -4,8 +4,8 @@ import { Form, Card } from "react-bootstrap";
 import { UserRecipeRating } from "../../services/recipeService";
 
 function DisplayUserRatings({ recipe }) {
-  const [userRating, setUserRating] = useState();
-  const [userComment, setUserComment] = useState();
+  const [userRating, setUserRating] = useState(null);
+  const [userComment, setUserComment] = useState(null);
   const [isLoading, setIsLoading] = useState();
   const [error, setError] = useState(null);
   console.log("DisplayUserRatings recipeId:", recipe);
@@ -15,15 +15,16 @@ function DisplayUserRatings({ recipe }) {
     UserRecipeRating(recipe._id)
       .then((response) => {
         console.log("RESPONSE DATA:", response.data);
-        console.log(
-          "RESPONSE DATA.oneRating.rating:",
-          response.data.oneRating[0].rating
-        );
         if (!response.success) {
           return setError("setError:", response.data);
         }
-        setUserRating(response.data.oneRating[0]?.rating);
-        setUserComment(response.data.oneRating[0]?.comment);
+        if (!response.data.oneRating.length) {
+          setUserRating(null);
+          setUserComment("");
+        } else {
+          setUserRating(response.data.oneRating[0]?.rating);
+          setUserComment(response.data.oneRating[0]?.comment);
+        }
       })
       .catch((message) => {
         setError(message);
