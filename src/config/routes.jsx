@@ -3,7 +3,7 @@ import HomePage from "../pages/HomePage";
 import Profile from "../pages/profile/ProfilePage";
 import Login from "../pages/LogIn";
 import Signup from "../pages/Signup";
-import ProtectedPage from "../pages/ProtectedPage";
+// import ProtectedPage from "../pages/ProtectedPage";
 import * as PATHS from "../utils/paths";
 import SingleRecipe from "../pages/Recipe/SingleRecipe.page";
 import CreateRecipe from "../pages/Recipe/CreateRecipe";
