@@ -43,7 +43,11 @@ export default function UpdateProfile(props) {
   return (
     <div>
       <h1>Update {user.username}´s Profile</h1>
-      <img height={"300px"} src={user.profileImage} alt={`${user.username}'s Profile`} />
+      <img
+        height={"300px"}
+        src={user.profileImage}
+        alt={`${user.username}'s Profile`}
+      />
       {error && <p style={{ color: "teal", fontWeight: "530" }}>{error}</p>}
       <form onSubmit={handleFromSubmit} method="POST">
         <input key={inputKey} type="file" onChange={handleInputChange} />

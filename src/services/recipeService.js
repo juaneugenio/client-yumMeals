@@ -38,8 +38,16 @@ export function createRecipe(formBody) {
   return recipeService
     .post("/create", formBody, sendUser())
     .then(onSuccess("create-recipe"))
-    .catch(onError(formBody));
+    .catch(onError("create-recipe"));
 }
+
+// export function updateRecipeImage(formBody) {
+//   return recipeService
+//     .patch("/updateRecipeImage", formBody, sendUser())
+//     .then(onSuccess("update-image-recipe"))
+//     .catch(onError("update-image-recipe"));
+// }
+
 // Function to delete a single recipe and to be used in the SingleRecipe.page.
 export function deleteSingleRecipe(id) {
   // const authorization = getUserToken();
