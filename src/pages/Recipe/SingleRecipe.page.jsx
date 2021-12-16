@@ -108,7 +108,7 @@ function SingleRecipe({ user }) {
       <Container>
         <Card.Body>
           <img
-            height={"450px"}
+            height={"500px"}
             src={singleRecipe.imageRecipe}
             alt={`${singleRecipe.title}'s meal`}
           />
