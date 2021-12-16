@@ -2,24 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Card, Container, Form, Button } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
-import { getSingleRecipe, deleteSingleRecipe } from "../../services/recipeService";
+import {
+  getSingleRecipe,
+  deleteSingleRecipe,
+} from "../../services/recipeService";
 import "../Recipe/SingleRecipePage.css";
 import { FaStar } from "react-icons/fa";
 import { createRating } from "../../services/recipeService";
-<<<<<<< HEAD
 import LoadingComponent from "../../components/Loading/index";
 import { Link } from "react-router-dom";
 import EditRecipe from "../../components/EditRecipe";
 
-=======
-
-// import { Link } from "react-router-dom";
-import LoadingComponent from "../../components/Loading/index";
-import { Link } from "react-router-dom";
-
-import EditRecipe from "../../components/EditRecipe";
-
->>>>>>> juan
 function SingleRecipe({ user }) {
   console.log("-----> ", user);
   const navigate = useNavigate();
@@ -28,10 +21,7 @@ function SingleRecipe({ user }) {
   // console.log("singleRecipe1:", singleRecipe);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-<<<<<<< HEAD
 
-=======
->>>>>>> juan
   const isLoggedIn = () => Boolean(user);
   const isOwner = () => isLoggedIn() && user._id === singleRecipe?.owner._id;
 
