@@ -22,6 +22,7 @@ export function getRecipes() {
 }
 
 export function getSingleRecipe(recipeId) {
+  console.log("looooooookkkkk", recipeId);
   return recipeService
     .get(`/${recipeId}`)
     .then(onSuccess("getSingleRecipe"))
@@ -29,7 +30,11 @@ export function getSingleRecipe(recipeId) {
 }
 // export function getRecipeEdit(recipeId) {
 //   return recipeService
-//     .get(`/${recipeId}`)
+//     .get(`/edit/${recipeId}`, {
+//       headers: {
+//         authorization: getUserToken(),
+//       },
+//     })
 //     .then(onSuccess("getRecipeEdit"))
 //     .catch(onError(recipeId));
 // }
@@ -73,13 +78,9 @@ export function createRating(formBody) {
 // Function to edit/update a singleRecipe and to be used in the SingleRecipe.page
 
 export function updateSingleRecipe(recipeId, formBody) {
-  console.log("------>", { formBody });
+  console.log("------>", formBody);
   return recipeService
-    .put(`/${recipeId}`, formBody, sendUser(), {
-      headers: {
-        authorization: getUserToken(),
-      },
-    })
+    .put(`/edit/${recipeId}`, formBody, sendUser())
     .then(onSuccess("updated-recipe"))
     .catch(onError("updated-recipe"));
 }

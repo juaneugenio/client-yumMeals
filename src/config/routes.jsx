@@ -54,14 +54,22 @@ const routes = (props) => {
         <Navigate to={PATHS.LOGIN_PAGE} replace />
       ),
     },
-    {
-      path: PATHS.PROTECTEDPAGE,
-      element: user ? (
-        <ProtectedPage {...props} />
-      ) : (
-        <Navigate to={PATHS.LOGIN_PAGE} replace />
-      ),
-    },
+    // {
+    //   path: PATHS.PROTECTEDPAGE,
+    //   element: user ? (
+    //     <ProtectedPage {...props} />
+    //   ) : (
+    //     <Navigate to={PATHS.LOGIN_PAGE} replace />
+    //   ),
+    // },
+    // {
+    //   path: PATHS.EDIT_RECIPE_PAGE,
+    //   element: user ? (
+    //     <EditRecipe {...props} />
+    //   ) : (
+    //     <Navigate to={PATHS.LOGIN_PAGE} replace />
+    //   ),
+    // },
   ];
 };
 

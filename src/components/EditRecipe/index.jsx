@@ -26,7 +26,7 @@ function EditRecipe({ recipe }) {
     setError(false);
 
     const formBody = new FormData();
-    formBody.appendy("imageRecipePic", choosenPicture);
+    // formBody.appendy("imageRecipePic", choosenPicture);
     formBody.append("title", title);
     formBody.append("category", category);
     formBody.append("ingredients", ingredients);
