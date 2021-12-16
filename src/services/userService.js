@@ -21,7 +21,7 @@ export function updatingUserName(username) {
 }
 
 export function deleteUser(userId) {
-  console.log("User to delete", { userId });
+  console.log("👉 User to delete", { userId });
   return userService
     .delete(`/${userId}`, {
       headers: {
@@ -30,7 +30,7 @@ export function deleteUser(userId) {
     })
     .then((res) => {
       removeAccessToken();
-      return onSuccess("deleted-User", res);
+      return onSuccess("deleted-user", res);
     })
     .catch(onError("deleted-user"));
 }

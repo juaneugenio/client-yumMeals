@@ -109,14 +109,14 @@ export default function UpdateProfile(props) {
         <button type="submit">Upload Image</button>
       </form>
 
-      <form className="settingsForm" onSubmit={handleUserChange}>
+      <form onSubmit={handleUserChange}>
         <label>Username</label>
         <div>
           <input
             type="text"
             name="username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(event) => setUsername(event.target.value)}
           />
 
           <button type="submit">Update Username</button>
