@@ -24,6 +24,7 @@ function SingleRecipe({ user }) {
   const [isLoading, setIsLoading] = useState(true);
   const isLoggedIn = () => Boolean(user);
   const isOwner = () => isLoggedIn() && user._id === singleRecipe?.owner._id;
+  const isNotOwner = () => isLoggedIn() && user._id !== singleRecipe?.owner._id;
   const recIsRated = () => Boolean(recipeIsRated);
   const isRated = () => isLoggedIn(true) && recIsRated(true);
 
@@ -122,18 +123,17 @@ function SingleRecipe({ user }) {
         </Card.Body>
       </Card>
       {/* ///////////////////////////////////CREATE RATING/////////////////////////////////////////////// */}
-      {user && (
-        <p>
-          <strong>
-            If you want to rate and comment this recipe, you need to create an
-            account
-          </strong>
-        </p>
-      )}
+      {!user ||
+        (isNotOwner() && (
+          <p>
+            <strong>Rate & Comment ! Log in or Sign Up !!!</strong>
+          </p>
+        ))}
       {isLoggedIn() ||
         !isRated() ||
-        (isOwner() && <RatingRecipe recipe={singleRecipe} />)}
-      {user && <DisplayUserRating recipe={singleRecipe} />}
+        (isNotOwner() && <RatingRecipe recipe={singleRecipe} />)}
+
+      {isRated() || (isOwner() && <DisplayUserRating recipe={singleRecipe} />)}
       {/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
       <DisplayRatings ratings={allRatings} />
       {/*////////////////////////////EDIT AND DELETE////////////////////////////////////  */}

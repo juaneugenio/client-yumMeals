@@ -10,8 +10,8 @@ function RatingRecipe({ recipe }) {
   console.log("RatingRecipe recipe._id:", recipe._id);
 
   const navigate = useNavigate();
-  const [rating, setRating] = useState(undefined);
-  const [hover, setHover] = useState(undefined);
+  const [rating, setRating] = useState(null);
+  const [hover, setHover] = useState(null);
   const [isLoading, setIsLoading] = useState();
   const [error, setError] = useState(null);
   const [form, setForm] = useState({
