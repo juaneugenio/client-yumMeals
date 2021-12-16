@@ -7,15 +7,14 @@ import {
   deleteSingleRecipe,
 } from "../../services/recipeService";
 import "../Recipe/SingleRecipePage.css";
-import { FaStar } from "react-icons/fa";
-import { createRating } from "../../services/recipeService";
-import LoadingComponent from "../../components/Loading/index";
 import { Link } from "react-router-dom";
 import EditRecipe from "../../components/EditRecipe";
+import RatingRecipe from "../../components/RatingRecipe";
+import DisplayRatings from "../../components/DisplayRatings/DisplayRatings";
+import DisplayUserRating from "../../components/DisplayUserRating";
 
 function SingleRecipe({ user }) {
-  console.log("-----> ", user);
-  const navigate = useNavigate();
+  console.log("user-----> ", user);
   const { recipeId } = useParams();
   const [singleRecipe, setSingleRecipe] = useState(undefined);
   // console.log("singleRecipe1:", singleRecipe);
@@ -24,16 +23,39 @@ function SingleRecipe({ user }) {
 
   const isLoggedIn = () => Boolean(user);
   const isOwner = () => isLoggedIn() && user._id === singleRecipe?.owner._id;
+  const isNotOwner = () => isLoggedIn() && user._id !== singleRecipe?.owner._id;
+  const recIsRated = () => Boolean(recipeIsRated);
+  const isRated = () => isLoggedIn(true) && recIsRated(true);
+
+  const navigate = useNavigate();
+  const [allRatings, setAllRatings] = useState(undefined);
+  const [recipeIsRated, setRecipeIsRated] = useState(undefined);
+  console.log("///***isRated:", isRated());
+  console.log("///***recIsRated:", recIsRated());
 
   useEffect(() => {
     setIsLoading(true);
     getSingleRecipe(recipeId)
       .then((recipe) => {
+        console.log("///***recIsRated:", recIsRated());
+        console.log("///***isRated:", isRated());
+        console.log("recipeId:", recipeId);
+        console.log("response.date:", recipe.data);
         if (!recipe.success) {
           return setError("setError:", recipe.data);
         }
         setSingleRecipe(recipe.data.recipe);
-        // console.log("recipe.data:", recipe.data);
+        setAllRatings(recipe.data.rating);
+        setRecipeIsRated(recipe.data.recipeIsRated);
+
+        console.log("*****recipe.data.recipe:", recipe.data.recipe);
+        console.log("*****recipe.data.rating:", recipe.data.rating);
+        console.log(
+          "*****recipe.data.recipeIsRated:",
+          recipe.data.recipeIsRated
+        );
+        console.log("///***recIsRated:", recIsRated());
+        console.log("///***isRated:", isRated());
       })
       .catch((message) => {
         setError(message);
@@ -43,41 +65,11 @@ function SingleRecipe({ user }) {
       });
   }, [recipeId]);
 
-  function handleNormalInput(event) {
-    const { name, value } = event.target;
-    return setForm({ ...form, [name]: value });
-  }
-
-  //CREATE THE RATING COMPONENT
-  //FIRST THE CONST
-  const [rating, setRating] = useState(null);
-  const [hover, setHover] = useState(null);
-  const [form, setForm] = useState({
-    userRating: "",
-    comment: "",
-  });
-  const { userRating, comment } = form;
-
-  //IN THE SUBMIT EVENT WE PUT THE RATING FUNCTION
-  function handleSubmit(event) {
-    event.preventDefault();
-    setIsLoading(true);
-    setError(false);
-    //THIS FUNCTION COMES FROM THE RECIPE SERVICE
-    createRating({ userRating, comment, recipeId }).then((res) => {
-      console.log("RES:", res);
-      if (!res.success) {
-        return setError(res.data);
-      }
-      navigate(PATHS.HOME_PAGE);
-    });
-  }
-
-  // It comes from RecipeService
-  // It comes from RecipeService
   function handleDeleteSingleRecipe() {
     setIsLoading(true);
     deleteSingleRecipe(recipeId)
+      // console
+      //   .log("deleteRecipe:", recipeId)
       .then((response) => {
         if (!response.success) {
           return setError(response.data);
@@ -96,8 +88,10 @@ function SingleRecipe({ user }) {
   }
 
   if (isLoading) {
-    return <LoadingComponent />;
+    return <div>Loading...</div>;
   }
+
+  console.log(`HERE?`);
 
   if (error) {
     return <div>{error}</div>;
@@ -105,7 +99,7 @@ function SingleRecipe({ user }) {
 
   return (
     <Container className="mt-2 p-5">
-      <Container>
+      <Card>
         <Card.Body>
           <img
             height={"500px"}
@@ -168,56 +162,24 @@ function SingleRecipe({ user }) {
               </Button>
             </div>
           )}
-          <Form onSubmit={handleSubmit}>
-            <fieldset className="my-4">
-              <legend>Please rate this recipe if you already did it !</legend>
-              <Form.Group className="my-4">
-                {[...Array(5)].map((star, i) => {
-                  const ratingValue = i + 1;
-                  return (
-                    <Form.Label>
-                      <input
-                        type="radio"
-                        name="userRating"
-                        value={ratingValue}
-                        onClick={() => setRating(ratingValue)}
-                        onChange={handleNormalInput}
-                      />
-                      <FaStar
-                        className="star"
-                        color={
-                          ratingValue <= (hover || rating)
-                            ? "#ffc107"
-                            : "#e4e5e9"
-                        }
-                        onMouseEnter={() => setHover(ratingValue)}
-                        onMouseLeave={() => setHover(null)}
-                        size={20}
-                      />
-                    </Form.Label>
-                  );
-                })}
-              </Form.Group>
-              <Form.Group className="my-4">
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  type="text"
-                  name="comment"
-                  value={comment}
-                  onChange={handleNormalInput}
-                  placeholder="Write your comment about the recipe"
-                />
-              </Form.Group>
-              <Button className="px-5 " variant="success" type="submit">
-                Submit
-              </Button>
-            </fieldset>
-          </Form>
+          {isOwner() && <EditRecipe recipe={singleRecipe} />}
         </Card.Body>
-      </Container>
+      </Card>
 
-      {isOwner() && <EditRecipe recipe={singleRecipe} />}
+      {/* ///////////////////////////////////CREATE RATING/////////////////////////////////////////////// */}
+      {!user ||
+        (isNotOwner() && (
+          <p>
+            <strong>Rate & Comment ! Log in or Sign Up !!!</strong>
+          </p>
+        ))}
+      {isLoggedIn() ||
+        !isRated() ||
+        (isNotOwner() && <RatingRecipe recipe={singleRecipe} />)}
+
+      {isRated() || (isOwner() && <DisplayUserRating recipe={singleRecipe} />)}
+      {/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
+      <DisplayRatings ratings={allRatings} />
     </Container>
   );
 }

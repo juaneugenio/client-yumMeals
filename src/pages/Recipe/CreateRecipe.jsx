@@ -48,7 +48,7 @@ function CreateRecipe() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setIsLoading(true);
+    SetIsLoading(true);
     setError(false);
 
     if (!chosenPicture) {
@@ -78,7 +78,7 @@ function CreateRecipe() {
     });
   }
 
-  if (isLoading) {
+  if (Loading) {
     return <LoadingComponent />;
   }
 

@@ -22,22 +22,12 @@ export function getRecipes() {
 }
 
 export function getSingleRecipe(recipeId) {
-  console.log("looooooookkkkk", recipeId);
   return recipeService
-    .get(`/${recipeId}`)
+    .get(`/${recipeId}`, sendUser())
     .then(onSuccess("getSingleRecipe"))
     .catch(onError(recipeId));
 }
-// export function getRecipeEdit(recipeId) {
-//   return recipeService
-//     .get(`/edit/${recipeId}`, {
-//       headers: {
-//         authorization: getUserToken(),
-//       },
-//     })
-//     .then(onSuccess("getRecipeEdit"))
-//     .catch(onError(recipeId));
-// }
+
 export function createRecipe(formBody) {
   console.log(`Recipe created 👇`, formBody);
   return recipeService
@@ -67,16 +57,7 @@ export function deleteSingleRecipe(id) {
     .catch(onError("deleted-recipe"));
 }
 
-export function createRating(formBody) {
-  console.log(`body`, { formBody });
-  return recipeService
-    .post("/comment", formBody, sendUser())
-    .then(onSuccess("create-rating"))
-    .catch(onError(formBody));
-}
-// Funtion to edit/update a singleRecipe and to be used in the SingleRecipe.page
 // Function to edit/update a singleRecipe and to be used in the SingleRecipe.page
-
 export function updateSingleRecipe(recipeId, formBody) {
   console.log("------>", formBody);
   return recipeService
@@ -85,10 +66,17 @@ export function updateSingleRecipe(recipeId, formBody) {
     .catch(onError("updated-recipe"));
 }
 
-// export function updateSingleRecipe(id, formBody) {
-//   console.log("Mira el cuerpo de la form->", { formBody });
-//   return recipeService
-//     .patch(`/${id}/edit`, formBody, sendUser())
-//     .then(onSuccess("update-recipe"))
-//     .catch(onError("formBody"));
-// }
+export function createRating(formRate, recipeId) {
+  console.log(`body`, { formRate });
+  return recipeService
+    .post(`/rating/${recipeId}`, { ...formRate }, sendUser())
+    .then(onSuccess("create-rating"))
+    .catch(onError(formRate));
+}
+
+export function UserRecipeRating(recipeId) {
+  return recipeService
+    .get(`/rating/${recipeId}`, sendUser())
+    .then(onSuccess("get-User-Rating"))
+    .catch(onError("get-User-Rating"));
+}

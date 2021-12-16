@@ -100,7 +100,7 @@ function EditRecipe({ recipe }) {
             <Form.Label>
               Title of your Recipe*:
               <Form.Control
-                value={title}
+                value={form.title}
                 onChange={handleNormalInput}
                 type="text"
                 placeholder={recipe.title}
@@ -114,7 +114,7 @@ function EditRecipe({ recipe }) {
             <Form.Label>
               Category of your recipe:
               <Form.Control
-                value={category}
+                value={form.category}
                 onChange={handleNormalInput}
                 type="text"
                 placeholder="breakfast, lunch, dinner, snack, appetizer"
@@ -127,7 +127,7 @@ function EditRecipe({ recipe }) {
         <Form.Group className="mb-3">
           <Form.Label>Ingredients of your recipe*:</Form.Label>
           <Form.Control
-            value={ingredients}
+            value={form.ingredients}
             onChange={handleNormalInput}
             type="text"
             placeholder="butter, beef, carrot,..."
@@ -138,7 +138,7 @@ function EditRecipe({ recipe }) {
         <Form.Group className="mb-3">
           <Form.Label>Steps of your recipe*:</Form.Label>
           <Form.Control
-            value={stepsRecipe}
+            value={form.stepsRecipe}
             onChange={handleNormalInput}
             type="text"
             placeholder="First, you need to boil the carrots"
@@ -149,7 +149,7 @@ function EditRecipe({ recipe }) {
         <Form.Group className="mb-3">
           <Form.Label>CookingTime*:</Form.Label>
           <Form.Control
-            value={cookingTime}
+            value={form.cookingTime}
             onChange={handleNormalInput}
             type="text"
             placeholder="Set a duration of your recipe"

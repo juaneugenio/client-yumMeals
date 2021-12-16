@@ -28,7 +28,7 @@ function HomePage() {
   return (
     <div>
       <Container>
-        <Row className="py 3">
+        <Row className="py-3">
           <Col className="row justify-content-center">
             {recipes.map((recipe) => (
               <Card className="my-4 mx-3" style={{ width: "23rem" }}>
