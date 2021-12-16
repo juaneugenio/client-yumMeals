@@ -43,7 +43,11 @@ const routes = (props) => {
     },
     {
       path: PATHS.CURRENT_USER_PROFILE,
-      element: user ? <Profile {...props} /> : <Navigate to={PATHS.LOGIN_PAGE} replace />,
+      element: user ? (
+        <Profile {...props} />
+      ) : (
+        <Navigate to={PATHS.LOGIN_PAGE} replace />
+      ),
     },
     {
       path: PATHS.EDIT_PROFILE_PAGE,
@@ -61,14 +65,6 @@ const routes = (props) => {
         <Navigate to={PATHS.LOGIN_PAGE} replace />
       ),
     },
-    // {
-    //   path: PATHS.EDIT_RECIPE_PAGE,
-    //   element: user ? (
-    //     <EditRecipe {...props} />
-    //   ) : (
-    //     <Navigate to={PATHS.LOGIN_PAGE} replace />
-    //   ),
-    // },
   ];
 };
 

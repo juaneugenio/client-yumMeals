@@ -13,8 +13,6 @@ function RatingRecipe({ recipe }) {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   const [isLoading, setIsLoading] = useState();
-  const [errorLogin, setErrorLogIn] = useState(null);
-  const [errorRecipe, setErrorRecipe] = useState(null);
   const [error, setError] = useState(null);
   const [form, setForm] = useState({
     userRating: "",
@@ -27,22 +25,6 @@ function RatingRecipe({ recipe }) {
     const { name, value } = event.target;
     return setForm({ ...form, [name]: value });
   }
-  // // DISPLAY ERROR MESSAGE IF NO LOGGED IN USER
-  // function displayErrorLoginMessage() {
-  //   setErrorLogIn(
-  //     "You need to be logged in if you want to rate and comment a recipe"
-  //   );
-  //   setTimeout(() => {
-  //     setErrorLogIn("");
-  //   }, 3000);
-  // }
-  // // DISPLAY ERROR MESSAGE IF THE RECIPE DOESN'T EXIST
-  // function displayErrorRecipeMessage() {
-  //   setErrorRecipe("This recipe doesn't exist");
-  //   setTimeout(() => {
-  //     setErrorRecipe("");
-  //   }, 3000);
-  // }
 
   //IN THE SUBMIT EVENT WE PUT THE RATING FUNCTION
   function handleSubmit(event) {

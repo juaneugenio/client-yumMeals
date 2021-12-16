@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaStar } from "react-icons/fa";
-import { Form, Card, Button } from "react-bootstrap";
-import * as PATHS from "../../utils/paths";
+import { Form, Card } from "react-bootstrap";
 
 function DisplayRatings({ ratings }) {
   // console.log("DisplayRatings recipe:", recipe);

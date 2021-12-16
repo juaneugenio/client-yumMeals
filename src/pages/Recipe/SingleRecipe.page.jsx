@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container, Button, Form } from "react-bootstrap";
-import { FaStar } from "react-icons/fa";
+import { Card, Container, Button } from "react-bootstrap";
 import { useParams } from "react-router";
 import {
   getSingleRecipe,
@@ -11,6 +10,7 @@ import { Link } from "react-router-dom";
 import EditRecipe from "../../components/EditRecipe";
 import RatingRecipe from "../../components/RatingRecipe";
 import DisplayRatings from "../../components/DisplayRatings/DisplayRatings";
+import DisplayUserRating from "../../components/DisplayUserRating";
 // import DeleteRecipe from "../../components/DeleteRecipe";
 import { useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
@@ -24,11 +24,9 @@ function SingleRecipe({ user }) {
   const [isLoading, setIsLoading] = useState(true);
   const isLoggedIn = () => Boolean(user);
   const isOwner = () => isLoggedIn() && user._id === singleRecipe?.owner._id;
-  // const isRatedd = () => Boolean(isRated);
+
   const navigate = useNavigate();
-  // const [isRated, setIsRated] = useState();
   const [allRatings, setAllRatings] = useState(undefined);
-  const [rating, setRating] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -41,11 +39,9 @@ function SingleRecipe({ user }) {
         }
         setSingleRecipe(recipe.data.recipe);
         setAllRatings(recipe.data.rating);
-        // setIsRated(recipe.data.isRated);
+
         console.log("recipe.data.recipe:", recipe.data.recipe);
         console.log("recipe.data.rating:", recipe.data.rating);
-
-        // console.log("recipe.data.isRated:", recipe.data.isRated);
       })
       .catch((message) => {
         setError(message);
@@ -111,15 +107,15 @@ function SingleRecipe({ user }) {
           </Card.Text>
         </Card.Body>
       </Card>
-      {/* ///////////////////////////////////RATING COMPONENT/////////////////////////////////////////////// */}
+      {/* ///////////////////////////////////CREATE RATING/////////////////////////////////////////////// */}
       <p>
         <strong>
           If you want to rate and comment this recipe, you need to create an
           account
         </strong>
       </p>
-      {/* ///////////////////////////////////CREATE RATING/////////////////////////////////////////////// */}
       {user && <RatingRecipe recipe={singleRecipe} />}
+      {user && <DisplayUserRating recipeId={singleRecipe._id} />}
       {/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
       <DisplayRatings ratings={allRatings} />
       {/*////////////////////////////EDIT AND DELETE////////////////////////////////////  */}

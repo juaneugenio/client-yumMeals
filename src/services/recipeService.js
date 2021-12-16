@@ -49,14 +49,6 @@ export function deleteSingleRecipe(id) {
     .catch(onError("deleted-recipe"));
 }
 
-export function createRating(formRate, recipeId) {
-  console.log(`body`, { formRate });
-  return recipeService
-    .post("/comment", { ...formRate, recipeId }, sendUser())
-    .then(onSuccess("create-rating"))
-    .catch(onError(formRate));
-}
-
 // Function to edit/update a singleRecipe and to be used in the SingleRecipe.page
 export function updateSingleRecipe(recipeId, formBody) {
   console.log("------>", formBody);
@@ -64,4 +56,19 @@ export function updateSingleRecipe(recipeId, formBody) {
     .put(`/edit/${recipeId}`, formBody, sendUser())
     .then(onSuccess("updated-recipe"))
     .catch(onError("updated-recipe"));
+}
+
+export function createRating(formRate, recipeId) {
+  console.log(`body`, { formRate });
+  return recipeService
+    .post(`/rating/${recipeId}`, { ...formRate }, sendUser())
+    .then(onSuccess("create-rating"))
+    .catch(onError(formRate));
+}
+
+export function UserRecipeRating(recipeId) {
+  return recipeService
+    .get(`/rating/${recipeId}`, sendUser())
+    .then(onSuccess("get-User-Rating"))
+    .catch(onError("get-User-Rating"));
 }
