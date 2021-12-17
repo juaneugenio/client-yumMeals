@@ -8,8 +8,6 @@ import { getLoggedIn, logout } from "./services/auth";
 import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
 
-import bGround from "./images/bgGround";
-
 export default function App() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,7 +54,7 @@ export default function App() {
   return (
     <div className="App">
       <Navbar handleLogout={handleLogout} user={user} />
-      <img alt="logo" src={bGround} />
+      <img src={require("./images/bgGeneral.jpeg")} alt="Carlie Anglemire" />
       <Routes>
         {routes({ user, setUser, authenticate, handleLogout }).map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
