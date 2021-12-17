@@ -1,6 +1,10 @@
 .img-recipe-card {
-  width: 110%;
+  width: 100%;
   height: 300px;
+}
+
+.photo-recipe{
+  width: fit-content;
 }
 
 .card-container {

@@ -1,14 +1,7 @@
 footer {
-<<<<<<< HEAD
-  background: #ac0d0d;
-  /* background: #FA4402;  */
-  color: white;
-  height: 3rem;
-=======
   background: #ca6e66;
   color: rgb(255, 255, 255);
   height: 2rem;
->>>>>>> dev
   display: flex;
   align-items: center;
   justify-content: center;

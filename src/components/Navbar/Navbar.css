@@ -3,28 +3,18 @@ nav {
   padding: 0.5em;
   justify-content: space-around;
   flex-wrap: wrap;
-<<<<<<< HEAD
-  background: #ac0d0d;
-  /* background:	#FA4402; */
-  /* background: #da594d; */
-=======
->>>>>>> dev
   font-weight: 600;
   background-color: rgba(0, 0, 0, 0.13);
   backdrop-filter: blur(40px);
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 10px rgba(8, 7, 16, 0.6);
-  position: fixed;
-  z-index: 1;
+  /* position: fixed;
+  z-index: 1; */
   width: 100%;
 }
 
 .nav__projectName {
-<<<<<<< HEAD
-  color: #ffffff;
-=======
   color: #838259;
->>>>>>> dev
   text-decoration: none;
   font-size: 30px;
 }
@@ -32,7 +22,7 @@ nav {
 .authLink {
   color: white;
   text-decoration: none;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.s ease-in-out;
 }
 
 .authLink + .authLink {
