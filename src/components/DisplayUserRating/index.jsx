@@ -15,24 +15,9 @@ function DisplayUserRatings({ recipe }) {
     UserRecipeRating(recipe._id)
       .then((response) => {
         console.log("RESPONSE DATA:", response.data);
-<<<<<<< HEAD
-        // console.log(
-        //   "RESPONSE DATA.oneRating.rating:",
-        //   response.data.oneRating[0]?.rating
-        // );
         if (!response.success) {
           return setError("setError:", response.data);
         }
-
-        //  return;
-
-        console.log(response);
-
-=======
-        if (!response.success) {
-          return setError("setError:", response.data);
-        }
->>>>>>> marie
         if (!response.data.oneRating.length) {
           setUserRating(null);
           setUserComment("");
