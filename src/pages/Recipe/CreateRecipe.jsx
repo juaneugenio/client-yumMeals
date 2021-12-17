@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import LoadingComponent from "../../components/Loading/index";
 import { createRecipe } from "../../services/recipeService";
 import * as PATHS from "../../utils/paths";
-import "../Recipe/CreateRecipe.css";
 // import { updateRecipeImage } from "../../services/recipeService";
 
 function CreateRecipe() {
@@ -85,7 +84,7 @@ function CreateRecipe() {
 
   return (
     <div>
-      <Container className="background">
+      <Container>
         <Form onSubmit={handleSubmit} method="POST">
           <fieldset>
             <legend className="my-5 fw-bold"> Create your Recipe </legend>

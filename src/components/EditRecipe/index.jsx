@@ -81,7 +81,7 @@ function EditRecipe({ recipe }) {
 
       <fieldset>
         <legend>Update your Recipe</legend>
-        <Row className="px-6 py-5">
+        <Row className="py-3">
           <Form.Group as={Col}>
             <img height={"350px"} src={imageRecipe} alt={`${title}'s meal`} />
           </Form.Group>
