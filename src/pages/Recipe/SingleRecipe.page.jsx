@@ -166,7 +166,9 @@ function SingleRecipe({ user }) {
               ))}
           </ListGroup.Item>
 
-          <RatingRecipe recipe={singleRecipe} />
+          {isLoggedIn() ||
+            !isRated() ||
+            (isNotOwner() && <RatingRecipe recipe={singleRecipe} />)}
 
           {isRated() ||
             (isOwner() && <DisplayUserRating recipe={singleRecipe} />)}
