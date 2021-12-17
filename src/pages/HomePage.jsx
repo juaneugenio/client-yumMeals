@@ -2,6 +2,7 @@
 import { Card, Button, Row, Container, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { getRecipes } from "../services/recipeService";
+import "./HomePage.css";
 
 function HomePage() {
   const [recipes, setRecipes] = useState([]); //when we go to homepage, initialy we dont have any recipes. user travels to this pages but it will be empty
@@ -25,12 +26,12 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
-      <Container>
-        <Row className="py-3">
-          <Col className="row justify-content-center">
+    <div className="wraper">
+      <Container className="container-fostrap">
+        <Row>
+          <div className="col-xs-12 col-sm-4">
             {recipes.map((recipe) => (
-              <Card className="my-4 mx-3" style={{ width: "23rem" }}>
+              <Card className="card">
                 <Card.Img variant="top" src={recipe.imageRecipe} alt={recipe.title} />
                 <Card.Body>
                   <Card.Title>
@@ -53,7 +54,7 @@ function HomePage() {
                 </Card.Body>
               </Card>
             ))}
-          </Col>
+          </div>
         </Row>
       </Container>
     </div>
