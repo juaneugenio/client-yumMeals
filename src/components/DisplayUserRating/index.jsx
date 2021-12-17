@@ -6,6 +6,7 @@ import { UserRecipeRating } from "../../services/recipeService";
 function DisplayUserRatings({ recipe }) {
   const [userRating, setUserRating] = useState(null);
   const [userComment, setUserComment] = useState(null);
+  const [isRatedRecipe, setIsRatedRecipe] = useState(false);
   const [isLoading, setIsLoading] = useState();
   const [error, setError] = useState(null);
   console.log("DisplayUserRatings recipeId:", recipe);
@@ -67,7 +68,9 @@ function DisplayUserRatings({ recipe }) {
                         />
                         <FaStar
                           className="star"
-                          color={ratingValue <= userRating ? "#ffc107" : "#e4e5e9"}
+                          color={
+                            ratingValue <= userRating ? "#ffc107" : "#e4e5e9"
+                          }
                           size={20}
                         />
                       </Form.Label>

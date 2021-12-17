@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  Container,
-  Button,
-  ListGroup,
-  ListGroupItem,
-} from "react-bootstrap";
+import { Card, Container, Button, ListGroup } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
 import {
@@ -13,7 +7,6 @@ import {
   deleteSingleRecipe,
 } from "../../services/recipeService";
 import "../Recipe/SingleRecipePage.css";
-import { Link } from "react-router-dom";
 import EditRecipe from "../../components/EditRecipe";
 import RatingRecipe from "../../components/RatingRecipe";
 import DisplayRatings from "../../components/DisplayRatings/DisplayRatings";
@@ -30,39 +23,44 @@ function SingleRecipe({ user }) {
   const isLoggedIn = () => Boolean(user);
   const isOwner = () => isLoggedIn() && user._id === singleRecipe?.owner._id;
   const isNotOwner = () => isLoggedIn() && user._id !== singleRecipe?.owner._id;
-  const recIsRated = () => Boolean(recipeIsRated);
-  const isRated = () => isLoggedIn(true) && recIsRated(true);
-
+  const isNotLoggedIn = () => Boolean(!user);
   const navigate = useNavigate();
   const [allRatings, setAllRatings] = useState(undefined);
-  const [recipeIsRated, setRecipeIsRated] = useState(undefined);
-  console.log("///***isRated:", isRated());
-  console.log("///***recIsRated:", recIsRated());
+  const [ratedRecipe, setRatedRecipe] = useState();
+  const Rated = () => Boolean(ratedRecipe);
+
+  // console.log("///***isRated:", isRated);
+  // console.log("///***recIsRated:", isNotRated);
 
   useEffect(() => {
     setIsLoading(true);
     getSingleRecipe(recipeId)
       .then((recipe) => {
-        console.log("///***recIsRated:", recIsRated());
-        console.log("///***isRated:", isRated());
+        console.log("///***Rated:", Rated());
+        // console.log("///***isRated:", isRated);
         console.log("recipeId:", recipeId);
         console.log("response.date:", recipe.data);
         if (!recipe.success) {
           return setError("setError:", recipe.data);
         }
+
         setSingleRecipe(recipe.data.recipe);
         setAllRatings(recipe.data.rating);
-        setRecipeIsRated(recipe.data.recipeIsRated);
+        setRatedRecipe(recipe.data.recipeIsRated);
 
+        console.log("*****recipe.data:", recipe.data);
         console.log("*****recipe.data.recipe:", recipe.data.recipe);
         console.log("*****recipe.data.rating:", recipe.data.rating);
         console.log(
           "*****recipe.data.recipeIsRated:",
           recipe.data.recipeIsRated
         );
-        console.log("///***recIsRated:", recIsRated());
-        console.log("///***isRated:", isRated());
+        // console.log("///***isOk:", isOk());
+        // console.log("///***isNotOk:", isNotOk());
+        // console.log("-----isLoggedIn:", isLoggedIn());
+        // console.log("///***isNotRated:", isNotRated);
       })
+
       .catch((message) => {
         setError(message);
       })
@@ -96,8 +94,6 @@ function SingleRecipe({ user }) {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
-  console.log(`HERE?`);
 
   if (error) {
     return <div>{error}</div>;
@@ -150,30 +146,29 @@ function SingleRecipe({ user }) {
               <li className="list-group-item  text-secondary">{step}</li>
             ))}
           </ol>
-          <Card.Text className="h6 mt-4">
-            <b>Rating:</b>
-          </Card.Text>
         </Card.Body>
 
         {/* ///////////////////////////////////CREATE RATING/////////////////////////////////////////////// */}
         <ListGroup variant="flush">
           <ListGroup.Item>
-            {!user ||
-              (isNotOwner() && (
-                <p>
-                  <strong>Rate & Comment ! Log in or Sign Up !!!</strong>
-                </p>
-              ))}
+            {isNotLoggedIn() && (
+              <p>
+                <strong>Rate & Comment ! Log in or Sign Up !!!</strong>
+              </p>
+            )}
           </ListGroup.Item>
-
-          {isLoggedIn() ||
-            !isRated() ||
-            (isNotOwner() && <RatingRecipe recipe={singleRecipe} />)}
-
-          {isRated() ||
-            (isOwner() && <DisplayUserRating recipe={singleRecipe} />)}
+          <ListGroup.Item>
+            {(isLoggedIn() || Rated() || isNotOwner()) && (
+              <RatingRecipe recipe={singleRecipe} />
+            )}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            {isOwner() && <DisplayUserRating recipe={singleRecipe} />}
+          </ListGroup.Item>
           {/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
-          <DisplayRatings ratings={allRatings} />
+          <ListGroup.Item>
+            <DisplayRatings ratings={allRatings} />
+          </ListGroup.Item>
         </ListGroup>
       </Card>
 
