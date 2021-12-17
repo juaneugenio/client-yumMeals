@@ -67,9 +67,7 @@ function DisplayUserRatings({ recipe }) {
                         />
                         <FaStar
                           className="star"
-                          color={
-                            ratingValue <= userRating ? "#ffc107" : "#e4e5e9"
-                          }
+                          color={ratingValue <= userRating ? "#ffc107" : "#e4e5e9"}
                           size={20}
                         />
                       </Form.Label>

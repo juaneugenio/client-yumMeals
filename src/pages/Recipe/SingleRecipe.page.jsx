@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Container, Button } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
-import {
-  getSingleRecipe,
-  deleteSingleRecipe,
-} from "../../services/recipeService";
+import { getSingleRecipe, deleteSingleRecipe } from "../../services/recipeService";
 import "../Recipe/SingleRecipePage.css";
 import { Link } from "react-router-dom";
 import EditRecipe from "../../components/EditRecipe";
@@ -19,7 +16,7 @@ function SingleRecipe({ user }) {
   const [singleRecipe, setSingleRecipe] = useState(undefined);
   // console.log("singleRecipe1:", singleRecipe);
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const isLoggedIn = () => Boolean(user);
   const isOwner = () => isLoggedIn() && user._id === singleRecipe?.owner._id;
@@ -50,10 +47,7 @@ function SingleRecipe({ user }) {
 
         console.log("*****recipe.data.recipe:", recipe.data.recipe);
         console.log("*****recipe.data.rating:", recipe.data.rating);
-        console.log(
-          "*****recipe.data.recipeIsRated:",
-          recipe.data.recipeIsRated
-        );
+        console.log("*****recipe.data.recipeIsRated:", recipe.data.recipeIsRated);
         console.log("///***recIsRated:", recIsRated());
         console.log("///***isRated:", isRated());
       })
@@ -106,9 +100,7 @@ function SingleRecipe({ user }) {
             src={singleRecipe.imageRecipe}
             alt={`${singleRecipe.title}'s meal`}
           />
-          <Card.Text className="h1 mt-0 text-uppercase">
-            {singleRecipe.title}
-          </Card.Text>
+          <Card.Text className="h1 mt-0 text-uppercase">{singleRecipe.title}</Card.Text>
           <Card.Subtitle className="mx-4 pt-1 text-secondary blockquote-footer">
             by {singleRecipe.owner.username}
           </Card.Subtitle>
@@ -130,9 +122,7 @@ function SingleRecipe({ user }) {
           <Card.Subtitle>
             <ol className="list-group list-group-numbered">
               {singleRecipe.ingredients.map((ingredient) => (
-                <li className="list-group-item  text-secondary">
-                  {ingredient}
-                </li>
+                <li className="list-group-item  text-secondary">{ingredient}</li>
               ))}
             </ol>
           </Card.Subtitle>
@@ -153,11 +143,7 @@ function SingleRecipe({ user }) {
               <Link key={singleRecipe._id} to={`/recipe/edit/${recipeId}`}>
                 <Button variant="secondary">Edit Recipe</Button>
               </Link>
-              <Button
-                variant="danger"
-                onClick={handleDeleteSingleRecipe}
-                type="delete"
-              >
+              <Button variant="danger" onClick={handleDeleteSingleRecipe} type="delete">
                 Delete Recipe
               </Button>
             </div>
