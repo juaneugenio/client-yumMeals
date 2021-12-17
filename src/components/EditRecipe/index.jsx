@@ -98,8 +98,9 @@ function EditRecipe({ recipe }) {
 
           <Form.Group as={Col}>
             <Form.Label>
-              Title of your Recipe*:
+              <b>Title of your Recipe*:</b>
               <Form.Control
+                className="text-secondary"
                 value={form.title}
                 onChange={handleNormalInput}
                 type="text"
@@ -110,10 +111,11 @@ function EditRecipe({ recipe }) {
           </Form.Group>
 
           {/* </Col> */}
-          <Form.Group as={Col}>
+          <Form.Group as={Col} className="mb-3">
             <Form.Label>
-              Category of your recipe:
+              <b>Category of your recipe:</b>
               <Form.Control
+                className="text-secondary"
                 value={form.category}
                 onChange={handleNormalInput}
                 type="text"
@@ -125,8 +127,11 @@ function EditRecipe({ recipe }) {
         </Row>
 
         <Form.Group className="mb-3">
-          <Form.Label>Ingredients of your recipe*:</Form.Label>
+          <Form.Label>
+            <b>Ingredients of your recipe*:</b>
+          </Form.Label>
           <Form.Control
+            className="text-secondary"
             value={form.ingredients}
             onChange={handleNormalInput}
             type="text"
@@ -136,8 +141,11 @@ function EditRecipe({ recipe }) {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Steps of your recipe*:</Form.Label>
+          <Form.Label>
+            <b>Steps of your recipe*:</b>
+          </Form.Label>
           <Form.Control
+            className="text-secondary"
             value={form.stepsRecipe}
             onChange={handleNormalInput}
             type="text"
@@ -147,8 +155,11 @@ function EditRecipe({ recipe }) {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>CookingTime*:</Form.Label>
+          <Form.Label>
+            <b>CookingTime*:</b>
+          </Form.Label>
           <Form.Control
+            className="text-secondary"
             value={form.cookingTime}
             onChange={handleNormalInput}
             type="text"
@@ -157,7 +168,9 @@ function EditRecipe({ recipe }) {
           />
         </Form.Group>
 
-        <Button type="submit">Save</Button>
+        <Button variant="secondary mt-4" type="submit">
+          Save
+        </Button>
       </fieldset>
     </Form>
   );
