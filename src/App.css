@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   background: linear-gradient(270deg, #ffc2c7, #b6e5d8, #fbe5c8, #8fdde7);
   background-size: 800% 800%;
@@ -12,6 +13,8 @@ body {
   -moz-animation: AnimationName 9s ease infinite;
   -o-animation: AnimationName 9s ease infinite;
   animation: AnimationName 9s ease infinite;
+
+  height: 100%;
 }
 
 @-webkit-keyframes AnimationName {
