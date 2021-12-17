@@ -107,7 +107,7 @@ function SingleRecipe({ user }) {
     <Container className="mt-2 p-5">
       <Card>
         <Card.Body>
-          <img
+          <Card.Img
             height={"500px"}
             src={singleRecipe.imageRecipe}
             alt={`${singleRecipe.title}'s meal`}
@@ -180,13 +180,15 @@ function SingleRecipe({ user }) {
       {isOwner() && (
         <div>
           <EditRecipe recipe={singleRecipe} />
-          <Button
-            variant="danger"
-            onClick={handleDeleteSingleRecipe}
-            type="delete"
-          >
-            Delete Recipe
-          </Button>
+          <div className="btn my-5">
+            <Button
+              variant="danger"
+              onClick={handleDeleteSingleRecipe}
+              type="delete"
+            >
+              Delete Recipe
+            </Button>
+          </div>
         </div>
       )}
     </Container>
