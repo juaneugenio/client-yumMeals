@@ -153,25 +153,6 @@ function SingleRecipe({ user }) {
           <Card.Text className="h6 mt-4">
             <b>Rating:</b>
           </Card.Text>
-<<<<<<< HEAD
-
-          {isOwner() && (
-            <div className="d-flex mt-5 gap-3">
-              <Link key={singleRecipe._id} to={`/recipe/edit/${recipeId}`}>
-                <Button variant="secondary">Edit Recipe</Button>
-              </Link>
-              <Button
-                variant="danger"
-                onClick={handleDeleteSingleRecipe}
-                type="delete"
-              >
-                Delete Recipe
-              </Button>
-            </div>
-          )}
-          {isOwner() && <EditRecipe recipe={singleRecipe} />}
-=======
->>>>>>> dev
         </Card.Body>
 
         {/* ///////////////////////////////////CREATE RATING/////////////////////////////////////////////// */}

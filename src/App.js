@@ -7,11 +7,7 @@ import Footer from "./components/Footer/Footer";
 import { getLoggedIn, logout } from "./services/auth";
 import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
-<<<<<<< HEAD
-// import background from "../public/images/gettyimages-1346051346-2048x2048.jpg";
-=======
 // import "../images/bgGeneral.jpg";
->>>>>>> dev
 
 export default function App() {
   const [user, setUser] = useState(null);
