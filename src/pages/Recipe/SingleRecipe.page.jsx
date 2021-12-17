@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container, Button } from "react-bootstrap";
+import {
+  Card,
+  Container,
+  Button,
+  ListGroup,
+  ListGroupItem,
+} from "react-bootstrap";
 import { useParams, useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
 import {
@@ -147,6 +153,7 @@ function SingleRecipe({ user }) {
           <Card.Text className="h6 mt-4">
             <b>Rating:</b>
           </Card.Text>
+<<<<<<< HEAD
 
           {isOwner() && (
             <div className="d-flex mt-5 gap-3">
@@ -163,23 +170,42 @@ function SingleRecipe({ user }) {
             </div>
           )}
           {isOwner() && <EditRecipe recipe={singleRecipe} />}
+=======
+>>>>>>> dev
         </Card.Body>
+
+        {/* ///////////////////////////////////CREATE RATING/////////////////////////////////////////////// */}
+        <ListGroup variant="flush">
+          <ListGroup.Item>
+            {!user ||
+              (isNotOwner() && (
+                <p>
+                  <strong>Rate & Comment ! Log in or Sign Up !!!</strong>
+                </p>
+              ))}
+          </ListGroup.Item>
+
+          <RatingRecipe recipe={singleRecipe} />
+
+          {isRated() ||
+            (isOwner() && <DisplayUserRating recipe={singleRecipe} />)}
+          {/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
+          <DisplayRatings ratings={allRatings} />
+        </ListGroup>
       </Card>
 
-      {/* ///////////////////////////////////CREATE RATING/////////////////////////////////////////////// */}
-      {!user ||
-        (isNotOwner() && (
-          <p>
-            <strong>Rate & Comment ! Log in or Sign Up !!!</strong>
-          </p>
-        ))}
-      {isLoggedIn() ||
-        !isRated() ||
-        (isNotOwner() && <RatingRecipe recipe={singleRecipe} />)}
-
-      {isRated() || (isOwner() && <DisplayUserRating recipe={singleRecipe} />)}
-      {/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
-      <DisplayRatings ratings={allRatings} />
+      {isOwner() && (
+        <div>
+          <EditRecipe recipe={singleRecipe} />
+          <Button
+            variant="danger"
+            onClick={handleDeleteSingleRecipe}
+            type="delete"
+          >
+            Delete Recipe
+          </Button>
+        </div>
+      )}
     </Container>
   );
 }

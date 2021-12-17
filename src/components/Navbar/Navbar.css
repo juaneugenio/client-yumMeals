@@ -1,11 +1,19 @@
 nav {
   display: flex;
-  padding: 1em;
+  padding: 0.5em;
   justify-content: space-around;
   flex-wrap: wrap;
   background: #ac0d0d;
   /* background:	#FA4402; */
+  /* background: #da594d; */
   font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(8, 7, 16, 0.6);
+  /* position: fixed; */
+
+  width: 100%;
 }
 
 .nav__projectName {
@@ -28,7 +36,7 @@ nav {
   color: #ffffff;
 }
 
-.nav-logoutbtn {
+/* .nav-logoutbtn {
   font-family: inherit;
   font-weight: inherit;
   padding: 0.5em 1em;
@@ -42,9 +50,27 @@ nav {
   transition: all 0.2s ease-in-out;
   position: sticky;
   top: 0;
-}
+} */
 
 .nav-logoutbtn:hover {
   transform: scale(1.05);
   background-color: #b67b7b;
+  background: linear-gradient(to right, #1845ad, #23a2f6);
+  border: none;
+  border-radius: 3px;
+  color: white;
+  padding: 0.5em 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: inherit;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.nav-logoutbtn:hover {
+  background: linear-gradient(to right, #1845ad, #f88b61);
+  /* transform: scale(1.05);
+  background-color: #d13e3e; */
 }
