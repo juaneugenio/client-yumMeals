@@ -47,7 +47,10 @@ function HomePage() {
                     <b>{recipe.title}</b>{" "}
                   </Card.Title>
                   <hr />
-                  <Card.Subtitle style={{ fontSize: 14 }} className="mb-2 text-muted">
+                  <Card.Subtitle
+                    style={{ fontSize: 14 }}
+                    className="mb-2 text-muted"
+                  >
                     Category: {recipe.category} <br />
                     Cooking Time: {recipe.cookingTime} <br />
                     <Form>
@@ -66,7 +69,9 @@ function HomePage() {
                               />
                               <FaStar
                                 className="star"
-                                color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"}
+                                color={
+                                  ratingValue <= rating ? "#ffc107" : "#e4e5e9"
+                                }
                                 size={20}
                               />
                             </Form.Label>
@@ -80,7 +85,8 @@ function HomePage() {
                   <Button
                     className="readmore-btn"
                     key={recipe._id}
-                    href={`/recipe/${recipe._id}`}>
+                    href={`/recipe/${recipe._id}`}
+                  >
                     Read More
                   </Button>
                 </Card.Footer>

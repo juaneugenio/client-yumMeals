@@ -1,0 +1,28 @@
+.text{
+font-family: Arial, Helvetica, sans-serif;
+color: rgb(87, 87, 87);
+}
+
+/* .image-cropper {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+} */
+
+.image-rounded {
+    display: inline;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+    position: relative;
+}
+
+.content-justify{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}

@@ -11,3 +11,11 @@ footer {
   height: 60px;
   margin-top: -200px;
 }
+
+a{
+  color: white;
+}
+
+.fixed-bottom{
+font-size: 12px;
+}

@@ -56,6 +56,7 @@ export default function App() {
     <div className="App">
       {/* <img src="/images/bgGeneral.jpg" alt="logo" /> */}
       <Navbar handleLogout={handleLogout} user={user} />
+      {/* <div style={{ backgroundImage: `url(${background})` }}></div> */}
       <Routes>
         {routes({ user, setUser, authenticate, handleLogout }).map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
