@@ -27,44 +27,10 @@ function HomePage() {
   }, []);
 
   return (
-    // <div>
-    //   <Container fluid className="pt-5">
-    //     <Row className="mt-5"></Row>
-    //     <Row xs={1} md={2} lg={3} className=" mr-2 mt-3">
-    //       {recipes.map((recipe) => (
-    //         <Col className="row justify-content-center">
-    //           <Card className=" row mt-3">
-    //             <Card.Img variant="top" src={recipe.imageRecipe} alt={recipe.title} />
-    //             <Card.Body>
-    //               <Card.Title>
-    //                 <Card.Title className="text-uppercase">
-    //                   <b>{recipe.title}</b>
-    //                 </Card.Title>
-    //                 <Card.Text className="font-weight-light text-secondary h6 mt-1">
-    //                   Category:
-    //                   {recipe.category}
-    //                 </Card.Text>
-    //                 <Card.Link key={recipe._id} href={`/recipe/${recipe._id}`}>
-    //                   <Button variant="outline-secondary mt-4">View Recipe</Button>
-    //                 </Card.Link>
-    //               </Card.Title>
-    //               <br />
-    //               {/* <h2>Steps to prepare the recipe</h2>
-    // 		<ol className="list-group list-group-numbered">{recipe.ingredients.map((step) => (
-    // 			<li className="list-group-item">{step}</li>
-    // 		))}</ol> */}
-    //             </Card.Body>
-    //           </Card>
-    //         </Col>
-    //       ))}
-    //     </Row>
-    //   </Container>
-    // </div>
-
     <div>
       <Container>
         <Row className="wrapper"></Row>
-        <Row xs={1} md={2} lg={4}>
+        <Row xs={1} md={2} lg={3}>
           {recipes.map((recipe) => (
             <Col>
               <Card className=" card-container">
