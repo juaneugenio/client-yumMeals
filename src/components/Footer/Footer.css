@@ -1,11 +1,22 @@
 footer {
+<<<<<<< HEAD
   background: #ac0d0d;
   /* background: #FA4402;  */
   color: white;
   height: 3rem;
+=======
+  background: #ca6e66;
+  color: rgb(255, 255, 255);
+  height: 2rem;
+>>>>>>> dev
   display: flex;
   align-items: center;
   justify-content: center;
+  clear: both;
+  position: fixed;
+  bottom: 0;
+  height: 60px;
+  margin-top: -200px;
 }
 
 a{
