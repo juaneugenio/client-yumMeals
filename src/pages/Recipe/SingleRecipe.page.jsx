@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  Container,
-  Button,
-  ListGroup,
-  ListGroupItem,
-} from "react-bootstrap";
+import { Card, Container, Button, ListGroup } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
 import {
@@ -13,7 +7,6 @@ import {
   deleteSingleRecipe,
 } from "../../services/recipeService";
 import "../Recipe/SingleRecipePage.css";
-import { Link } from "react-router-dom";
 import EditRecipe from "../../components/EditRecipe";
 import RatingRecipe from "../../components/RatingRecipe";
 import DisplayRatings from "../../components/DisplayRatings/DisplayRatings";
@@ -30,38 +23,38 @@ function SingleRecipe({ user }) {
   const isLoggedIn = () => Boolean(user);
   const isOwner = () => isLoggedIn() && user._id === singleRecipe?.owner._id;
   const isNotOwner = () => isLoggedIn() && user._id !== singleRecipe?.owner._id;
-  const recIsRated = () => Boolean(recipeIsRated);
-  const isRated = () => isLoggedIn(true) && recIsRated(true);
+  // const recIsRated = () => Boolean(recipeIsRated);
+  // const isRated = () => isLoggedIn(true) && recIsRated(true);
 
   const navigate = useNavigate();
   const [allRatings, setAllRatings] = useState(undefined);
-  const [recipeIsRated, setRecipeIsRated] = useState(undefined);
-  console.log("///***isRated:", isRated());
-  console.log("///***recIsRated:", recIsRated());
+  // const [recipeIsRated, setRecipeIsRated] = useState(undefined);
+  // console.log("///***isRated:", isRated());
+  // console.log("///***recIsRated:", recIsRated());
 
   useEffect(() => {
     setIsLoading(true);
     getSingleRecipe(recipeId)
       .then((recipe) => {
-        console.log("///***recIsRated:", recIsRated());
-        console.log("///***isRated:", isRated());
-        console.log("recipeId:", recipeId);
-        console.log("response.date:", recipe.data);
+        // console.log("///***recIsRated:", recIsRated());
+        // console.log("///***isRated:", isRated());
+        // console.log("recipeId:", recipeId);
+        // console.log("response.date:", recipe.data);
         if (!recipe.success) {
           return setError("setError:", recipe.data);
         }
         setSingleRecipe(recipe.data.recipe);
         setAllRatings(recipe.data.rating);
-        setRecipeIsRated(recipe.data.recipeIsRated);
+        // setRecipeIsRated(recipe.data.recipeIsRated);
 
-        console.log("*****recipe.data.recipe:", recipe.data.recipe);
-        console.log("*****recipe.data.rating:", recipe.data.rating);
-        console.log(
-          "*****recipe.data.recipeIsRated:",
-          recipe.data.recipeIsRated
-        );
-        console.log("///***recIsRated:", recIsRated());
-        console.log("///***isRated:", isRated());
+        // console.log("*****recipe.data.recipe:", recipe.data.recipe);
+        // console.log("*****recipe.data.rating:", recipe.data.rating);
+        // console.log(
+        //   "*****recipe.data.recipeIsRated:",
+        //   recipe.data.recipeIsRated
+        // );
+        // console.log("///***recIsRated:", recIsRated());
+        // console.log("///***isRated:", isRated());
       })
       .catch((message) => {
         setError(message);
@@ -168,8 +161,7 @@ function SingleRecipe({ user }) {
 
           <RatingRecipe recipe={singleRecipe} />
 
-          {isRated() ||
-            (isOwner() && <DisplayUserRating recipe={singleRecipe} />)}
+          {isOwner() && <DisplayUserRating recipe={singleRecipe} />}
           {/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
           <DisplayRatings ratings={allRatings} />
         </ListGroup>
