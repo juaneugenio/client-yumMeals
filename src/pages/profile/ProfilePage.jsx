@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import "./ProfilePage.css";
 import { Card, Container } from "react-bootstrap";
 
