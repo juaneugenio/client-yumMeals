@@ -47,6 +47,8 @@ function RatingRecipe({ recipe }) {
     return <div>Loading...</div>;
   }
 
+  console.log(`HERE?`);
+
   if (error) {
     return <div>{error}</div>;
   }

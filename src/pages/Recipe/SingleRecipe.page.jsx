@@ -20,38 +20,24 @@ function SingleRecipe({ user }) {
   const isLoggedIn = () => Boolean(user);
   const isOwner = () => isLoggedIn() && user._id === singleRecipe?.owner._id;
   const isNotOwner = () => isLoggedIn() && user._id !== singleRecipe?.owner._id;
-  // const recIsRated = () => Boolean(recipeIsRated);
-  // const isRated = () => isLoggedIn(true) && recIsRated(true);
-
   const navigate = useNavigate();
   const [allRatings, setAllRatings] = useState(undefined);
-  // const [recipeIsRated, setRecipeIsRated] = useState(undefined);
-  // console.log("///***isRated:", isRated());
-  // console.log("///***recIsRated:", recIsRated());
 
   useEffect(() => {
     setIsLoading(true);
     getSingleRecipe(recipeId)
       .then((recipe) => {
-        // console.log("///***recIsRated:", recIsRated());
-        // console.log("///***isRated:", isRated());
-        // console.log("recipeId:", recipeId);
-        // console.log("response.date:", recipe.data);
+        console.log("recipeId:", recipeId);
+        console.log("response.date:", recipe.data);
         if (!recipe.success) {
           return setError("setError:", recipe.data);
         }
         setSingleRecipe(recipe.data.recipe);
         setAllRatings(recipe.data.rating);
-        // setRecipeIsRated(recipe.data.recipeIsRated);
 
-        // console.log("*****recipe.data.recipe:", recipe.data.recipe);
-        // console.log("*****recipe.data.rating:", recipe.data.rating);
-        // console.log(
-        //   "*****recipe.data.recipeIsRated:",
-        //   recipe.data.recipeIsRated
-        // );
-        // console.log("///***recIsRated:", recIsRated());
-        // console.log("///***isRated:", isRated());
+        console.log("*****recipe.data.recipe:", recipe.data.recipe);
+        console.log("*****recipe.data.rating:", recipe.data.rating);
+        console.log("*****recipe.data.recipeIsRated:", recipe.data.recipeIsRated);
       })
       .catch((message) => {
         setError(message);
