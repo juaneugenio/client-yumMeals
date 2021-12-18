@@ -11,30 +11,30 @@ export default function Profile({ user }) {
         {/* <button>Favourite Recipes</button>
       <button>Your Recipes</button> */}
         <Card className="card p-3">
-          <h2
-            style={{ fontSize: 30 }}
-            className="text justify-content-center text-center "
-          >
-            {user.username}´s Profile
-          </h2>
-          <div className="fluit d-flexbox">
+          <div className=" d-flexbox">
             <Card.Img
               className="image-rounded p-3"
               src={user.profileImage}
               alt={`${user.username}'s Profile`}
             />
+            <p style={{ fontSize: 16 }} className=" mb-1 stext-muted">
+              Username
+            </p>
+            <h4>
+              {" "}
+              <b> {user.username} </b>
+            </h4>
             <hr />
             <p>
-              <b>Username</b> {user.username}
+              <b>Email: </b> {user.email}
             </p>
-            <p>
-              <b>Email</b> {user.email}
-            </p>
-
             <a href="/profile/edit" className="btn btn-secondary mb-4">
               Edit Profile
             </a>
-            <div className="card-footer text-muted">2 days ago</div>
+            <a href="/profile/edit" className="btn btn-primary mb-4">
+              Home Page
+            </a>
+            {/* <div className="card-footer text-muted">2 days ago</div> */}
           </div>
         </Card>
       </Container>
