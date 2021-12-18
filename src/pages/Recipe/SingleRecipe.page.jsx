@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  Container,
-  Button,
-  ListGroup,
-  ListGroupItem,
-} from "react-bootstrap";
+import { Card, Container, Button, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
-import {
-  getSingleRecipe,
-  deleteSingleRecipe,
-} from "../../services/recipeService";
+import { getSingleRecipe, deleteSingleRecipe } from "../../services/recipeService";
 import "../Recipe/SingleRecipePage.css";
 import { Link } from "react-router-dom";
 import EditRecipe from "../../components/EditRecipe";
@@ -56,10 +47,7 @@ function SingleRecipe({ user }) {
 
         console.log("*****recipe.data.recipe:", recipe.data.recipe);
         console.log("*****recipe.data.rating:", recipe.data.rating);
-        console.log(
-          "*****recipe.data.recipeIsRated:",
-          recipe.data.recipeIsRated
-        );
+        console.log("*****recipe.data.recipeIsRated:", recipe.data.recipeIsRated);
         console.log("///***recIsRated:", recIsRated());
         console.log("///***isRated:", isRated());
       })
@@ -97,8 +85,6 @@ function SingleRecipe({ user }) {
     return <div>Loading...</div>;
   }
 
-  console.log(`HERE?`);
-
   if (error) {
     return <div>{error}</div>;
   }
@@ -112,9 +98,7 @@ function SingleRecipe({ user }) {
             src={singleRecipe.imageRecipe}
             alt={`${singleRecipe.title}'s meal`}
           />
-          <Card.Text className="h1 mt-0 text-uppercase">
-            {singleRecipe.title}
-          </Card.Text>
+          <Card.Text className="h1 mt-0 text-uppercase">{singleRecipe.title}</Card.Text>
           <Card.Subtitle className="mx-4 pt-1 text-secondary blockquote-footer">
             by {singleRecipe.owner.username}
           </Card.Subtitle>
@@ -136,9 +120,7 @@ function SingleRecipe({ user }) {
           <Card.Subtitle>
             <ol className="list-group list-group-numbered">
               {singleRecipe.ingredients.map((ingredient) => (
-                <li className="list-group-item  text-secondary">
-                  {ingredient}
-                </li>
+                <li className="list-group-item  text-secondary">{ingredient}</li>
               ))}
             </ol>
           </Card.Subtitle>
@@ -168,8 +150,7 @@ function SingleRecipe({ user }) {
 
           <RatingRecipe recipe={singleRecipe} />
 
-          {isRated() ||
-            (isOwner() && <DisplayUserRating recipe={singleRecipe} />)}
+          {isRated() || (isOwner() && <DisplayUserRating recipe={singleRecipe} />)}
           {/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
           <DisplayRatings ratings={allRatings} />
         </ListGroup>
@@ -179,11 +160,7 @@ function SingleRecipe({ user }) {
         <div>
           <EditRecipe recipe={singleRecipe} />
           <div className="btn my-5">
-            <Button
-              variant="danger"
-              onClick={handleDeleteSingleRecipe}
-              type="delete"
-            >
+            <Button variant="danger" onClick={handleDeleteSingleRecipe} type="delete">
               Delete Recipe
             </Button>
           </div>

@@ -43,6 +43,13 @@ function RatingRecipe({ recipe }) {
       navigate(PATHS.HOME_PAGE);
     });
   }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div>
@@ -65,9 +72,7 @@ function RatingRecipe({ recipe }) {
                   />
                   <FaStar
                     className="star"
-                    color={
-                      ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
-                    }
+                    color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
                     onMouseEnter={() => setHover(ratingValue)}
                     onMouseLeave={() => setHover(null)}
                     size={20}
