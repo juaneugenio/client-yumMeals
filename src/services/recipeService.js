@@ -17,8 +17,8 @@ export function getRecipes() {
         authorization: getUserToken(),
       },
     })
-    .then(onSuccess("getRecipes"))
-    .catch(onError("getRecipes"));
+    .then(onSuccess("GET RECIPES:"))
+    .catch(onError("GET RECIPES:"));
 }
 
 export function getSingleRecipe(recipeId) {

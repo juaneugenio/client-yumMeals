@@ -13,7 +13,7 @@ import DisplayRatings from "../../components/DisplayRatings/DisplayRatings";
 import DisplayUserRating from "../../components/DisplayUserRating";
 
 function SingleRecipe({ user }) {
-  console.log("user-----> ", user);
+  console.log("SINGLE RECIPE PAGE USER-----> ", user);
   const { recipeId } = useParams();
   const [singleRecipe, setSingleRecipe] = useState(undefined);
   // console.log("singleRecipe1:", singleRecipe);
@@ -21,25 +21,20 @@ function SingleRecipe({ user }) {
   const [isLoading, setIsLoading] = useState(true);
 
   const isLoggedIn = () => Boolean(user);
+  const isNotLoggedIn = () => Boolean(!user);
   const isOwner = () => isLoggedIn() && user._id === singleRecipe?.owner._id;
   const isNotOwner = () => isLoggedIn() && user._id !== singleRecipe?.owner._id;
-  const isNotLoggedIn = () => Boolean(!user);
   const navigate = useNavigate();
   const [allRatings, setAllRatings] = useState(undefined);
   const [ratedRecipe, setRatedRecipe] = useState();
-  const Rated = () => Boolean(ratedRecipe);
-
-  // console.log("///***isRated:", isRated);
-  // console.log("///***recIsRated:", isNotRated);
+  let Rated = ratedRecipe;
 
   useEffect(() => {
     setIsLoading(true);
     getSingleRecipe(recipeId)
       .then((recipe) => {
-        console.log("///***Rated:", Rated());
-        // console.log("///***isRated:", isRated);
         console.log("recipeId:", recipeId);
-        console.log("response.date:", recipe.data);
+        console.log("GET SINGLE RECIPE:", recipe.data);
         if (!recipe.success) {
           return setError("setError:", recipe.data);
         }
@@ -55,10 +50,6 @@ function SingleRecipe({ user }) {
           "*****recipe.data.recipeIsRated:",
           recipe.data.recipeIsRated
         );
-        // console.log("///***isOk:", isOk());
-        // console.log("///***isNotOk:", isNotOk());
-        // console.log("-----isLoggedIn:", isLoggedIn());
-        // console.log("///***isNotRated:", isNotRated);
       })
 
       .catch((message) => {
@@ -103,7 +94,7 @@ function SingleRecipe({ user }) {
     <Container className="mt-2 p-5">
       <Card>
         <Card.Body>
-          <img
+          <Card.Img
             height={"500px"}
             src={singleRecipe.imageRecipe}
             alt={`${singleRecipe.title}'s meal`}
@@ -158,13 +149,14 @@ function SingleRecipe({ user }) {
             )}
           </ListGroup.Item>
           <ListGroup.Item>
-            {(isLoggedIn() || Rated() || isNotOwner()) && (
+            {(isLoggedIn() || isNotOwner()) && (
               <RatingRecipe recipe={singleRecipe} />
             )}
           </ListGroup.Item>
-          <ListGroup.Item>
-            {isOwner() && <DisplayUserRating recipe={singleRecipe} />}
-          </ListGroup.Item>
+
+          {(isOwner() || (Rated = false)) && (
+            <DisplayUserRating recipe={singleRecipe} />
+          )}
           {/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
           <ListGroup.Item>
             <DisplayRatings ratings={allRatings} />
@@ -175,13 +167,15 @@ function SingleRecipe({ user }) {
       {isOwner() && (
         <div>
           <EditRecipe recipe={singleRecipe} />
-          <Button
-            variant="danger"
-            onClick={handleDeleteSingleRecipe}
-            type="delete"
-          >
-            Delete Recipe
-          </Button>
+          <div className="btn my-5">
+            <Button
+              variant="danger"
+              onClick={handleDeleteSingleRecipe}
+              type="delete"
+            >
+              Delete Recipe
+            </Button>
+          </div>
         </div>
       )}
     </Container>

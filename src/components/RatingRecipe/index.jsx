@@ -4,6 +4,7 @@ import { createRating } from "../../services/recipeService";
 import { Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
+import "./index.css";
 
 function RatingRecipe({ recipe }) {
   console.log("RatingRecipe recipe:", recipe);
@@ -42,12 +43,23 @@ function RatingRecipe({ recipe }) {
       navigate(PATHS.HOME_PAGE);
     });
   }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  console.log(`HERE?`);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div>
       <Form onSubmit={handleSubmit}>
         <fieldset>
-          <legend>Please rate this recipe if you already did it !</legend>
+          <legend>
+            Remember to rate the recipe if you have not done it yet!{" "}
+          </legend>
           <Form.Group>
             {[...Array(5)].map((star, i) => {
               const ratingValue = i + 1;
