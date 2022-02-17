@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Form, Card } from "react-bootstrap";
-import { UserRecipeRating } from "../../services/recipeService";
+import { UserRecipeRate } from "../../services/recipeService";
 
-function DisplayUserRatings({ recipe }) {
+function DisplayUserRating({ recipe }) {
   const [userRating, setUserRating] = useState(null);
   const [userComment, setUserComment] = useState(null);
-  const [isRatedRecipe, setIsRatedRecipe] = useState(false);
+  // const [isRatedRecipe, setIsRatedRecipe] = useState(false);
   const [isLoading, setIsLoading] = useState();
   const [error, setError] = useState(null);
   console.log("DisplayUserRatings recipeId:", recipe);
 
   useEffect(() => {
     setIsLoading(true);
-    UserRecipeRating(recipe._id)
+    UserRecipeRate(recipe._id)
       .then((response) => {
-        console.log("RESPONSE DATA:", response.data);
+        console.log("GET CURRENT USER RATING:", response.data);
         if (!response.success) {
           return setError("setError:", response.data);
         }
@@ -35,7 +35,7 @@ function DisplayUserRatings({ recipe }) {
       });
   }, [recipe._id]);
 
-  console.log(userRating, userComment);
+  // console.log("GET CURRENT USER RATING:", userRating, userComment);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -87,4 +87,4 @@ function DisplayUserRatings({ recipe }) {
   );
 }
 
-export default DisplayUserRatings;
+export default DisplayUserRating;

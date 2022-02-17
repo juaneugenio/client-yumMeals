@@ -6,9 +6,9 @@ import { useNavigate } from "react-router";
 import * as PATHS from "../../utils/paths";
 import "./index.css";
 
-function RatingRecipe({ recipe }) {
-  console.log("RatingRecipe recipe:", recipe);
-  console.log("RatingRecipe recipe._id:", recipe._id);
+function RateRecipe({ recipe }) {
+  console.log("Rate Recipe:", recipe);
+  console.log("Rate Recipe recipe._id:", recipe._id);
 
   const navigate = useNavigate();
   const [rating, setRating] = useState(null);
@@ -27,7 +27,7 @@ function RatingRecipe({ recipe }) {
     return setForm({ ...form, [name]: value });
   }
 
-  //IN THE SUBMIT EVENT WE PUT THE RATING FUNCTION
+  //IN THE SUBMIT EVENT WE PUT THE RATE FUNCTION
   function handleSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
@@ -35,11 +35,11 @@ function RatingRecipe({ recipe }) {
 
     //THIS FUNCTION COMES FROM THE RECIPE SERVICE
     createRating({ userRating, comment }, recipe._id).then((res) => {
-      console.log("RES:", res);
+      console.log("RATE RECIPE RES:", res);
       if (!res.success) {
         return setError(res.data);
       }
-      console.log("recipe._id", recipe._id);
+      console.log("RATE RECIPE recipe._id", recipe._id);
       navigate(PATHS.HOME_PAGE);
     });
   }
@@ -104,4 +104,4 @@ function RatingRecipe({ recipe }) {
   );
 }
 
-export default RatingRecipe;
+export default RateRecipe;

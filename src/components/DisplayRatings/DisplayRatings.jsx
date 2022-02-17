@@ -2,6 +2,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { Form, Card } from "react-bootstrap";
 
+//**** DISPLAY ALL RATINGS FOR A RECIPE*/
 function DisplayRatings({ ratings }) {
   // console.log("DisplayRatings recipe:", recipe);
   console.log("DisplayRatings allRatings:", ratings);

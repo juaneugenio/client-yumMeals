@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { Row } from "react-bootstrap";
 import "./Navbar.css";
 import * as PATHS from "../../utils/paths";
 import * as CONSTS from "../../utils/consts";
@@ -16,6 +17,7 @@ const Navbar = (props) => {
       <div>
         {props.user ? (
           <>
+            <Row>Hello {props.user.username} !</Row>
             <Link to={PATHS.CURRENT_USER_PROFILE} className="authLink">
               Profile
             </Link>

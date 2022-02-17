@@ -8,7 +8,7 @@ import {
 } from "../../services/recipeService";
 import "../Recipe/SingleRecipePage.css";
 import EditRecipe from "../../components/EditRecipe";
-import RatingRecipe from "../../components/RatingRecipe";
+import RateRecipe from "../../components/RateRecipe";
 import DisplayRatings from "../../components/DisplayRatings/DisplayRatings";
 import DisplayUserRating from "../../components/DisplayUserRating";
 
@@ -16,7 +16,6 @@ function SingleRecipe({ user }) {
   console.log("SINGLE RECIPE PAGE USER-----> ", user);
   const { recipeId } = useParams();
   const [singleRecipe, setSingleRecipe] = useState(undefined);
-  // console.log("singleRecipe1:", singleRecipe);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,7 +26,8 @@ function SingleRecipe({ user }) {
   const navigate = useNavigate();
   const [allRatings, setAllRatings] = useState(undefined);
   const [ratedRecipe, setRatedRecipe] = useState();
-  let Rated = ratedRecipe;
+  const isRated = () => Boolean(ratedRecipe);
+  const isNotRated = () => Boolean(!ratedRecipe);
 
   useEffect(() => {
     setIsLoading(true);
@@ -139,8 +139,9 @@ function SingleRecipe({ user }) {
           </ol>
         </Card.Body>
 
-        {/* ///////////////////////////////////CREATE RATING/////////////////////////////////////////////// */}
+        {/* ///////////////////////////////////RATINGS COMPONENTS/////////////////////////////////////////////// */}
         <ListGroup variant="flush">
+          {/* FIRST IF NO CURRENT USER LOGGED IN -->  DISPLAY THIS MESSAGE*/}
           <ListGroup.Item>
             {isNotLoggedIn() && (
               <p>
@@ -148,16 +149,18 @@ function SingleRecipe({ user }) {
               </p>
             )}
           </ListGroup.Item>
+
           <ListGroup.Item>
-            {(isLoggedIn() || isNotOwner()) && (
-              <RatingRecipe recipe={singleRecipe} />
-            )}
+            {/* SECOND : DISPLAY THE RATING MODULE TO RATE THE RECIPE IF THE CURRENT USER IS NOT THE OWNER OR HASN'T RATED THE RECIPE YET*/}
+            <RateRecipe recipe={singleRecipe} />
           </ListGroup.Item>
 
-          {(isOwner() || (Rated = false)) && (
+          {/* THIRD : DISPLAY THE CURRENT USER RATE MODULE IF THE CURRENT USER IS NOT THE OWNER OR HASN'T RATED THE RECIPE YET*/}
+          <ListGroup.Item>
             <DisplayUserRating recipe={singleRecipe} />
-          )}
-          {/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
+          </ListGroup.Item>
+
+          {/* FOURTH : DISPLAY THE RATES FROM ALL USERS*/}
           <ListGroup.Item>
             <DisplayRatings ratings={allRatings} />
           </ListGroup.Item>

@@ -67,9 +67,9 @@ export function createRating(formRate, recipeId) {
     .catch(onError(formRate));
 }
 
-export function UserRecipeRating(recipeId) {
+export function UserRecipeRate(recipeId) {
   return recipeService
     .get(`/rating/${recipeId}`, sendUser())
-    .then(onSuccess("get-User-Rating"))
-    .catch(onError("get-User-Rating"));
+    .then(onSuccess("GET USER RATING"))
+    .catch(onError("GET USER RATING"));
 }

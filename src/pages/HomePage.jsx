@@ -22,7 +22,7 @@ function HomePage({ user }) {
   return (
     <div>
       <Container>
-        {user && <Row className="wrapper">Hello {user.username} !</Row>}
+        <Row className="wrapper"></Row>
         <Row xs={1} md={2} lg={3}>
           {recipes.map((recipe) => (
             <Col>
