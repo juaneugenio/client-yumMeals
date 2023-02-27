@@ -1,50 +1,56 @@
 /** @format */
-import { Card} from "react-bootstrap";
+import { Card, Button, Row, Container, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { getRecipes } from "../services/recipeService";
-import "../App.css";
+import "./HomePage.css";
+import DisplayUserRatings from "../components/DisplayUserRating";
 
 function HomePage() {
-
 	const [recipes, setRecipes] = useState([]); //when we go to homepage, initialy we dont have any recipes. user travels to this pages but it will be empty
-	
-	//calling our mockdata (singlerecipe.page)
-	//getRecipe is done in SingleRecipe.page.  using a promise to get the mockdata
-	// useEffect(() => {
-	// 	getRecipes().then((dbRecipes) => {;
-	// 	setRecipes(dbRecipes);
-	// });
-	// }, []);
 
 	useEffect(() => {
 		getRecipes().then((dbRecipes) => {
-		  if (!dbRecipes.success) {
-			return console.log(dbRecipes.data);
-		  }
-		  console.log(dbRecipes);
-		  setRecipes(dbRecipes.data.recipes);
+			if (!dbRecipes.success) {
+				return console.log(dbRecipes.data);
+			}
+			console.log(dbRecipes);
+			setRecipes(dbRecipes.data.recipes);
 		});
-	  }, []);
+	}, []);
 
-	return (<div>
-		{recipes.map((recipe) => (
-				<Card  className="p-3" style={{ width: '18rem' }}>
-				<Card.Img variant="top" src={recipe.image} alt={recipe.title} />
-					<Card.Body>
-					<Card.Title>
-				<Card.Link key={recipe._id} href={`/recipe/${recipe._id}`}>{recipe.title}
-				</Card.Link>
-				</Card.Title>
-				<br />
-				{/* <h2>Steps to prepare the recipe</h2>
-				<ol className="list-group list-group-numbered">{recipe.ingredients.map((step) => (
-					<li className="list-group-item">{step}</li>
-				))}</ol> */}
-				</Card.Body>
-				</Card>
-		))}
-	</div>
+	return (
+		<div>
+			<Container className="grid__container">
+				<Row xs={1} md={2} lg={3}>
+					<Col>
+						{recipes.map((recipe) => (
+							<Card className=" card-container" key={recipe._id}>
+								<Row className="img-recipe-card">
+									<Card.Img className="photo-recipe" variant="top" src={recipe.imageRecipe} alt={recipe.title} />
+								</Row>
+								<Card.Body>
+									<Card.Title>
+										<b>{recipe.title}</b>
+										<DisplayUserRatings recipe={recipe} />
+									</Card.Title>
+									<hr />
+									<Card.Subtitle style={{ fontSize: 14 }} className="mb-2 text-muted">
+										Category: {recipe.category} <br />
+										Cooking Time: {recipe.cookingTime} <br />
+									</Card.Subtitle>
+								</Card.Body>
+								<Card.Footer className=" img-footer">
+									<Button className="readmore-btn" href={`/recipe/${recipe._id}`}>
+										Read More
+									</Button>
+								</Card.Footer>
+							</Card>
+						))}
+					</Col>
+				</Row>
+			</Container>
+		</div>
 	);
-		}
+}
 
 export default HomePage;

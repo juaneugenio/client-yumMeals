@@ -1,8 +1,21 @@
 footer {
-  background: #7f3730;
-  color: white;
-  height: 3rem;
+  background: #ca6e66;
+  color: rgb(255, 255, 255);
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  clear: both;
+  position: fixed;
+  bottom: 0;
+  height: 60px;
+  margin-top: -200px;
+}
+
+a{
+  color: white;
+}
+
+.fixed-bottom{
+font-size: 12px;
 }

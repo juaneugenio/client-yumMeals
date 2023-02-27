@@ -8,12 +8,12 @@ import * as CONSTS from "../../utils/consts";
 
 const Navbar = (props) => {
   return (
-    <nav>
+    <nav className="nav__authLinks">
       <Link to={PATHS.HOME_PAGE} className="nav__projectName">
         {CONSTS.CAPITALIZED_APP}
       </Link>
 
-      <div className="nav__authLinks">
+      <div>
         {props.user ? (
           <>
             <Link to={PATHS.CURRENT_USER_PROFILE} className="authLink">
@@ -22,9 +22,9 @@ const Navbar = (props) => {
             <Link to={PATHS.CREATE_RECIPE_PAGE} className="authLink">
               Create Recipe
             </Link>
-            <Link to={PATHS.PROTECTEDPAGE} className="authLink">
+            {/* <Link to={PATHS.PROTECTEDPAGE} className="authLink">
               Protected Page
-            </Link>
+            </Link> */}
             <button className="nav-logoutbtn" onClick={props.handleLogout}>
               Logout
             </button>

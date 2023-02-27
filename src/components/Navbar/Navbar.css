@@ -1,15 +1,25 @@
 nav {
   display: flex;
-  padding: 1em;
+  padding: 0.5em;
   justify-content: space-around;
   flex-wrap: wrap;
-  background: #7f3730;
   font-weight: 600;
+  background-color: #ca6e66;
+  /* backdrop-filter: blur(40px); */
+  /* border: 2px solid rgba(255, 255, 255, 0.1); */
+  box-shadow: 0 0 10px rgba(8, 7, 16, 0.6);
+  /* position: fixed;
+  z-index: 1; */
+  width: 100%;
 }
 
 .nav__projectName {
-  color: #e4f9ff;
+  color: #ffffff;
   text-decoration: none;
+  font-size: 30px;
+}
+.nav__projectName:hover {
+  color: #d1cece;
 }
 
 .authLink {
@@ -23,26 +33,29 @@ nav {
 }
 
 .authLink:hover {
-  color: #ffffff;
+  color: #d1cece;
 }
-
+.nav__authLinks {
+  display: flex;
+  align-items: center;
+}
 .nav-logoutbtn {
-  font-family: inherit;
-  font-weight: inherit;
-  padding: 0.5em 1em;
-  margin-left: 1em;
-  background-color: #5595ff;
-  box-shadow: 0 0 5px 0 aliceblue;
+  background: linear-gradient(to right, #1845ad, #23a2f6);
   border: none;
-  border-radius: 2px;
+  border-radius: 3px;
+  color: white;
+  padding: 0.5em 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: inherit;
   cursor: pointer;
-  color: #e3f2ff;
-  transition: all 0.2s ease-in-out;
-  position: sticky;
-  top: 0;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
 }
 
 .nav-logoutbtn:hover {
-  transform: scale(1.05);
-  background-color: #d13e3e;
+  background: linear-gradient(to right, #1845ad, #f88b61);
+  /* transform: scale(1.05);
+  background-color: #d13e3e; */
 }

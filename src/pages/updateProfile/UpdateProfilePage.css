@@ -1,0 +1,28 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30em;
+  height: 75%;
+}
+
+.container-card {
+  background: rgb(240, 228, 223);
+  width: 100%;
+  max-height: auto;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+
+  padding: 1.5em;
+}
+.username-update {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 23em;
+  height: 40px;
+  padding: 3px;
+  border: 1px solid black;
+  font-size: 1.2em;
+}
