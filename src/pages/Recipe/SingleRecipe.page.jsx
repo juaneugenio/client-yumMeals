@@ -31,7 +31,6 @@ function SingleRecipe({ user }) {
 					return setError("setError:", recipe.data);
 				}
 				setSingleRecipe(recipe.data.recipe);
-
 				setAllRatings(recipe.data.rating);
 			})
 			.catch((message) => {
