@@ -21,7 +21,7 @@ function DisplayRatings({ ratings }) {
 		<div>
 			<legend>All Ratings & Comments</legend>
 			{ratings.map((oneRating) => (
-				<div className="row-sm-3">
+				<div className="row-sm-3" key={oneRating.rater._id}>
 					<div className="col-sm-3">
 						<Card>
 							<Card.Title>by {oneRating.rater.username}</Card.Title>
@@ -33,7 +33,7 @@ function DisplayRatings({ ratings }) {
 											let rating = oneRating.rating;
 
 											return (
-												<Form.Label>
+												<Form.Label key={i}>
 													<input type="radio" readOnly name="Rating" value={ratingValue} />
 													<FaStar className="star" color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"} size={20} />
 												</Form.Label>
