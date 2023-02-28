@@ -5,7 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { Form, Card } from "react-bootstrap";
 import { UserRecipeRating } from "../../services/recipeService";
 
-function DisplayUserRatings({ recipe }) {
+function DisplayUserRatings({ recipes }) {
 	const [userRating, setUserRating] = useState("");
 	const [userComment, setUserComment] = useState(null);
 	const [isLoading, setIsLoading] = useState();
@@ -13,7 +13,7 @@ function DisplayUserRatings({ recipe }) {
 
 	useEffect(() => {
 		setIsLoading(true);
-		UserRecipeRating(recipe._id)
+		UserRecipeRating(recipes._id)
 			.then((response) => {
 				console.log("RESPONSE DATA:", response.data);
 				if (!response.success) {
@@ -33,7 +33,7 @@ function DisplayUserRatings({ recipe }) {
 			.finally(() => {
 				setIsLoading(false);
 			});
-	}, [recipe._id]);
+	}, [recipes._id]);
 
 	if (isLoading) {
 		return <div>Loading...</div>;
