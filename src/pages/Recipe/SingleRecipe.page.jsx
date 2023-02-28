@@ -10,11 +10,12 @@ import {
 } from "../../services/recipeService";
 import "../Recipe/SingleRecipePage.css";
 import EditRecipe from "../../components/EditRecipe";
-import RatingRecipe from "../../components/RatingRecipe";
+// import RatingRecipe from "../../components/RatingRecipe";
 import DisplayRatings from "../../components/DisplayRatings/DisplayRatings";
 import DisplayUserRatings from "../../components/DisplayUserRating/index";
 
 function SingleRecipe({ user }) {
+<<<<<<< HEAD
   const { recipeId } = useParams();
   const [singleRecipe, setSingleRecipe] = useState(undefined);
   const [error, setError] = useState("");
@@ -25,6 +26,19 @@ function SingleRecipe({ user }) {
   const isNotOwner = () => isLoggedIn() && user._id !== singleRecipe?.owner._id;
   const navigate = useNavigate();
   const [allRatings, setAllRatings] = useState(undefined);
+=======
+	const { recipeId } = useParams();
+	const [singleRecipe, setSingleRecipe] = useState(null);
+	console.log("%c ▶︎▶︎ -17-「SingleRecipe」", "font-size:13px; background:#993441; color:#ffb8b1;", singleRecipe);
+	const [error, setError] = useState("");
+	const [isLoading, setIsLoading] = useState(true);
+
+	const isLoggedIn = () => Boolean(user);
+	const isOwner = () => isLoggedIn() && user._id === singleRecipe?.owner._id;
+	const isNotOwner = () => isLoggedIn() && user._id !== singleRecipe?.owner._id;
+	const navigate = useNavigate();
+	const [allRatings, setAllRatings] = useState(null);
+>>>>>>> fb54222a36a5c0359af4ea9b0baaa6cc051dddc7
 
   useEffect(() => {
     setIsLoading(true);
@@ -74,6 +88,7 @@ function SingleRecipe({ user }) {
     return <div>{error}</div>;
   }
 
+<<<<<<< HEAD
   return (
     <Container className="mt-2 p-5">
       <Card>
@@ -159,6 +174,74 @@ function SingleRecipe({ user }) {
       )}
     </Container>
   );
+=======
+	return (
+		<Container className="mt-2 p-5">
+			<Card>
+				<Card.Body key={singleRecipe._id}>
+					<Card.Img height={"500px"} src={singleRecipe.imageRecipe} alt={`${singleRecipe.title}'s meal`} />
+					<Card.Text className="h1 mt-0 text-uppercase">{singleRecipe.title}</Card.Text>
+					<Card.Subtitle className="mx-4 pt-1 text-secondary blockquote-footer">
+						by {singleRecipe.owner.username}
+					</Card.Subtitle>
+					<Card.Text className="h6 mt-4">
+						<b>Category:</b>
+					</Card.Text>
+					<Card.Subtitle className="text-secondary">{singleRecipe.category}</Card.Subtitle>
+					<Card.Text className="h6 mt-4">
+						<b>Cooking time </b>🕒:
+					</Card.Text>
+					<Card.Subtitle className="text-secondary">{singleRecipe.cookingTime}</Card.Subtitle>
+					<Card.Text className="h6 mt-4">
+						<b>Ingredients:</b>
+					</Card.Text>
+					<ol className="list-group list-group-numbered">
+						{singleRecipe.ingredients.map((ingredient, index) => (
+							<Card.Subtitle>
+								<li className="list-group-item  text-secondary">{ingredient}</li>;
+							</Card.Subtitle>
+						))}
+					</ol>
+					<Card.Text className="h6 mt-4">
+						<b>Steps to follow:</b>
+					</Card.Text>
+					<ol className="list-group list-group-numbered">
+						{singleRecipe.stepsRecipe.map((step) => (
+							<li className="list-group-item  text-secondary">{step}</li>
+						))}
+					</ol>
+					<Card.Text className="h6 mt-4">
+						<b>Rating:</b>
+						{isOwner() && <DisplayUserRatings recipe={singleRecipe} />}
+					</Card.Text>
+				</Card.Body>
+
+				<DisplayRatings ratings={allRatings} />
+				{/* ///////////////////////////////////CREATE RATING/////////////////////////////////////////////// */}
+				<ListGroup variant="flush">
+					<ListGroup.Item>
+						{!user || (isNotOwner() && <strong>Rate & Comment ! Log in or Sign Up !!!</strong>)}
+					</ListGroup.Item>
+
+					{/* <RatingRecipe recipe={singleRecipe} /> */}
+
+					{/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
+				</ListGroup>
+			</Card>
+
+			{isOwner() && (
+				<div key={singleRecipe._id}>
+					<EditRecipe recipe={singleRecipe} />
+					<div className="btn my-5">
+						<Button variant="danger" onClick={handleDeleteSingleRecipe} type="delete">
+							Delete Recipe
+						</Button>
+					</div>
+				</div>
+			)}
+		</Container>
+	);
+>>>>>>> fb54222a36a5c0359af4ea9b0baaa6cc051dddc7
 }
 
 export default SingleRecipe;
