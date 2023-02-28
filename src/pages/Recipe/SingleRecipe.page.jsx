@@ -7,7 +7,7 @@ import * as PATHS from "../../utils/paths";
 import { getSingleRecipe, deleteSingleRecipe } from "../../services/recipeService";
 import "../Recipe/SingleRecipePage.css";
 import EditRecipe from "../../components/EditRecipe";
-// import RatingRecipe from "../../components/RatingRecipe";
+import RatingRecipe from "../../components/RatingRecipe";
 import DisplayRatings from "../../components/DisplayRatings/DisplayRatings";
 import DisplayUserRatings from "../../components/DisplayUserRating/index";
 
@@ -120,7 +120,7 @@ function SingleRecipe({ user }) {
 						{!user || (isNotOwner() && <strong>Rate & Comment ! Log in or Sign Up !!!</strong>)}
 					</ListGroup.Item>
 
-					{/* <RatingRecipe recipe={singleRecipe} /> */}
+					<RatingRecipe recipe={singleRecipe} />
 
 					{/* ///////////////////////////////////DISPLAY ALL RATINGS/////////////////////////////////////////////// */}
 				</ListGroup>
