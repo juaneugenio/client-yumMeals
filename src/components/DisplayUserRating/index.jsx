@@ -5,7 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { Form, Card } from "react-bootstrap";
 import { UserRecipeRating } from "../../services/recipeService";
 
-function DisplayUserRatings({ recipes }) {
+function DisplayUserRatings({ recipe }) {
 	const [userRating, setUserRating] = useState("");
 	const [userComment, setUserComment] = useState(null);
 	const [isLoading, setIsLoading] = useState();
@@ -13,7 +13,7 @@ function DisplayUserRatings({ recipes }) {
 
 	useEffect(() => {
 		setIsLoading(true);
-		UserRecipeRating(recipes._id)
+		UserRecipeRating(recipe._id)
 			.then((response) => {
 				console.log("RESPONSE DATA:", response.data);
 				if (!response.success) {
@@ -33,7 +33,7 @@ function DisplayUserRatings({ recipes }) {
 			.finally(() => {
 				setIsLoading(false);
 			});
-	}, [recipes._id]);
+	}, [recipe._id]);
 
 	if (isLoading) {
 		return <div>Loading...</div>;
@@ -52,7 +52,7 @@ function DisplayUserRatings({ recipes }) {
 						const ratingValue = i + 1;
 
 						return (
-							<Form.Label>
+							<Form.Label key={i}>
 								<input type="radio" readOnly name="userRating" value={userRating} />
 								<FaStar className="star" color={ratingValue <= userRating ? "#ffc107" : "#e4e5e9"} size={20} />
 							</Form.Label>
